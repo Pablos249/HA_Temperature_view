@@ -11,7 +11,7 @@ Polska karta Home Assistant do lokalnego podglądu temperatur domu i instalacji 
 3. Wyszukaj „Dom Heat Card”, wybierz **Pobierz**, po czym odśwież przeglądarkę. HACS powinien dodać zasób automatycznie. Jeżeli karta nie jest widoczna, w **Ustawienia → Dashboardy → Zasoby** sprawdź moduł JavaScript `/hacsfiles/HA_Temperature_view/HA_Temperature_view.js`.
 4. Dodaj kartę przez wybór karty niestandardowej „Dom Heat Card” albo YAML poniżej. Edytor zawiera wybór układu i podstawowych encji; przypisania pokoi i pionów są dostępne w YAML.
 
-Po aktualizacji HACS wykonaj twarde odświeżenie strony (`Ctrl+F5`) lub wyczyść pamięć podręczną zasobu. HACS korzysta z pliku z najnowszego GitHub Release, gdy wydanie istnieje.
+Po aktualizacji HACS wykonaj twarde odświeżenie strony (`Ctrl+F5`) lub wyczyść pamięć podręczną zasobu. Karta jest pobierana z katalogu `dist/` w domyślnej gałęzi repozytorium.
 
 ## Konfiguracja
 
@@ -98,4 +98,4 @@ npm run dev
 
 Podgląd `demo/index.html` renderuje oba układy i przełącznik jasnego/ciemnego motywu. Jest to kontrola wyglądu bez działającej instancji Home Assistant; integrację z prawdziwym selektorem encji i oknem more-info należy sprawdzić w HA po instalacji.
 
-Workflow CI sprawdza typy, testy i build. Tag `v*` buduje kartę i załącza `dist/HA_Temperature_view.js` do GitHub Release. Przed publikacją ustaw opis oraz tematy repozytorium w GitHub; nie ma potrzeby tworzyć integracji HA.
+Workflow CI sprawdza typy, testy i build. Plik `dist/HA_Temperature_view.js` jest commitowany do domyślnej gałęzi, dzięki czemu HACS może go pobrać bez GitHub Release. Przed publikacją ustaw opis oraz tematy repozytorium w GitHub; nie ma potrzeby tworzyć integracji HA.
