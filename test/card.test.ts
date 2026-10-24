@@ -16,7 +16,7 @@ describe("Dom Heat Card", () => {
   it("opens more-info for a configured entity and switches floors locally", async () => {
     const card = document.createElement("dom-heat-card") as DomHeatCard; card.setConfig(config); card.hass = hass("5");
     let selected = ""; card.addEventListener("hass-more-info", (event: Event) => selected = (event as CustomEvent).detail.entityId); document.body.append(card); await card.updateComplete;
-    (card.shadowRoot?.querySelector(".topbar .metric") as HTMLButtonElement).click(); expect(selected).toBe("sensor.outside");
+    (card.shadowRoot?.querySelector(".header .metric") as HTMLButtonElement).click(); expect(selected).toBe("sensor.outside");
     (card.shadowRoot?.querySelector("nav button") as HTMLButtonElement).click(); await card.updateComplete; expect(card.shadowRoot?.textContent).toContain("Piwnica"); card.remove();
   });
 });
