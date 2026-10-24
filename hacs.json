@@ -1,0 +1,6 @@
+{
+  "name": "Dom Heat Card",
+  "filename": "HA_Temperature_view.js",
+  "content_in_root": false,
+  "homeassistant": "2024.8.0"
+}
