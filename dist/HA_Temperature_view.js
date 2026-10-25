@@ -17,53 +17,53 @@ let ct = class {
     return this.cssText;
   }
 };
-const yt = (a) => new ct(typeof a == "string" ? a : a + "", void 0, Z), ht = (a, ...t) => {
-  const e = a.length === 1 ? a[0] : t.reduce((i, r, o) => i + ((n) => {
-    if (n._$cssResult$ === !0) return n.cssText;
-    if (typeof n == "number") return n;
-    throw Error("Value passed to 'css' function must be a 'css' function result: " + n + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
-  })(r) + a[o + 1], a[0]);
-  return new ct(e, a, Z);
-}, kt = (a, t) => {
-  if (K) a.adoptedStyleSheets = t.map((e) => e instanceof CSSStyleSheet ? e : e.styleSheet);
+const yt = (n) => new ct(typeof n == "string" ? n : n + "", void 0, Z), ht = (n, ...t) => {
+  const e = n.length === 1 ? n[0] : t.reduce((i, r, o) => i + ((a) => {
+    if (a._$cssResult$ === !0) return a.cssText;
+    if (typeof a == "number") return a;
+    throw Error("Value passed to 'css' function must be a 'css' function result: " + a + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
+  })(r) + n[o + 1], n[0]);
+  return new ct(e, n, Z);
+}, kt = (n, t) => {
+  if (K) n.adoptedStyleSheets = t.map((e) => e instanceof CSSStyleSheet ? e : e.styleSheet);
   else for (const e of t) {
     const i = document.createElement("style"), r = N.litNonce;
-    r !== void 0 && i.setAttribute("nonce", r), i.textContent = e.cssText, a.appendChild(i);
+    r !== void 0 && i.setAttribute("nonce", r), i.textContent = e.cssText, n.appendChild(i);
   }
-}, X = K ? (a) => a : (a) => a instanceof CSSStyleSheet ? ((t) => {
+}, X = K ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((t) => {
   let e = "";
   for (const i of t.cssRules) e += i.cssText;
   return yt(e);
-})(a) : a;
-const { is: wt, defineProperty: $t, getOwnPropertyDescriptor: bt, getOwnPropertyNames: _t, getOwnPropertySymbols: zt, getPrototypeOf: At } = Object, U = globalThis, Q = U.trustedTypes, Mt = Q ? Q.emptyScript : "", St = U.reactiveElementPolyfillSupport, C = (a, t) => a, B = { toAttribute(a, t) {
+})(n) : n;
+const { is: wt, defineProperty: $t, getOwnPropertyDescriptor: bt, getOwnPropertyNames: _t, getOwnPropertySymbols: zt, getPrototypeOf: At } = Object, U = globalThis, Q = U.trustedTypes, Mt = Q ? Q.emptyScript : "", St = U.reactiveElementPolyfillSupport, C = (n, t) => n, B = { toAttribute(n, t) {
   switch (t) {
     case Boolean:
-      a = a ? Mt : null;
+      n = n ? Mt : null;
       break;
     case Object:
     case Array:
-      a = a == null ? a : JSON.stringify(a);
+      n = n == null ? n : JSON.stringify(n);
   }
-  return a;
-}, fromAttribute(a, t) {
-  let e = a;
+  return n;
+}, fromAttribute(n, t) {
+  let e = n;
   switch (t) {
     case Boolean:
-      e = a !== null;
+      e = n !== null;
       break;
     case Number:
-      e = a === null ? null : Number(a);
+      e = n === null ? null : Number(n);
       break;
     case Object:
     case Array:
       try {
-        e = JSON.parse(a);
+        e = JSON.parse(n);
       } catch {
         e = null;
       }
   }
   return e;
-} }, pt = (a, t) => !wt(a, t), tt = { attribute: !0, type: String, converter: B, reflect: !1, useDefault: !1, hasChanged: pt };
+} }, pt = (n, t) => !wt(n, t), tt = { attribute: !0, type: String, converter: B, reflect: !1, useDefault: !1, hasChanged: pt };
 Symbol.metadata ??= /* @__PURE__ */ Symbol("metadata"), U.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
 let z = class extends HTMLElement {
   static addInitializer(t) {
@@ -81,12 +81,12 @@ let z = class extends HTMLElement {
   static getPropertyDescriptor(t, e, i) {
     const { get: r, set: o } = bt(this.prototype, t) ?? { get() {
       return this[e];
-    }, set(n) {
-      this[e] = n;
+    }, set(a) {
+      this[e] = a;
     } };
-    return { get: r, set(n) {
-      const l = r?.call(this);
-      o?.call(this, n), this.requestUpdate(t, l, i);
+    return { get: r, set(a) {
+      const d = r?.call(this);
+      o?.call(this, a), this.requestUpdate(t, d, i);
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(t) {
@@ -169,22 +169,22 @@ let z = class extends HTMLElement {
   _$AK(t, e) {
     const i = this.constructor, r = i._$Eh.get(t);
     if (r !== void 0 && this._$Em !== r) {
-      const o = i.getPropertyOptions(r), n = typeof o.converter == "function" ? { fromAttribute: o.converter } : o.converter?.fromAttribute !== void 0 ? o.converter : B;
+      const o = i.getPropertyOptions(r), a = typeof o.converter == "function" ? { fromAttribute: o.converter } : o.converter?.fromAttribute !== void 0 ? o.converter : B;
       this._$Em = r;
-      const l = n.fromAttribute(e, o.type);
-      this[r] = l ?? this._$Ej?.get(r) ?? l, this._$Em = null;
+      const d = a.fromAttribute(e, o.type);
+      this[r] = d ?? this._$Ej?.get(r) ?? d, this._$Em = null;
     }
   }
   requestUpdate(t, e, i, r = !1, o) {
     if (t !== void 0) {
-      const n = this.constructor;
-      if (r === !1 && (o = this[t]), i ??= n.getPropertyOptions(t), !((i.hasChanged ?? pt)(o, e) || i.useDefault && i.reflect && o === this._$Ej?.get(t) && !this.hasAttribute(n._$Eu(t, i)))) return;
+      const a = this.constructor;
+      if (r === !1 && (o = this[t]), i ??= a.getPropertyOptions(t), !((i.hasChanged ?? pt)(o, e) || i.useDefault && i.reflect && o === this._$Ej?.get(t) && !this.hasAttribute(a._$Eu(t, i)))) return;
       this.C(t, e, i);
     }
     this.isUpdatePending === !1 && (this._$ES = this._$EP());
   }
-  C(t, e, { useDefault: i, reflect: r, wrapped: o }, n) {
-    i && !(this._$Ej ??= /* @__PURE__ */ new Map()).has(t) && (this._$Ej.set(t, n ?? e ?? this[t]), o !== !0 || n !== void 0) || (this._$AL.has(t) || (this.hasUpdated || i || (e = void 0), this._$AL.set(t, e)), r === !0 && this._$Em !== t && (this._$Eq ??= /* @__PURE__ */ new Set()).add(t));
+  C(t, e, { useDefault: i, reflect: r, wrapped: o }, a) {
+    i && !(this._$Ej ??= /* @__PURE__ */ new Map()).has(t) && (this._$Ej.set(t, a ?? e ?? this[t]), o !== !0 || a !== void 0) || (this._$AL.has(t) || (this.hasUpdated || i || (e = void 0), this._$AL.set(t, e)), r === !0 && this._$Em !== t && (this._$Eq ??= /* @__PURE__ */ new Set()).add(t));
   }
   async _$EP() {
     this.isUpdatePending = !0;
@@ -208,8 +208,8 @@ let z = class extends HTMLElement {
       }
       const i = this.constructor.elementProperties;
       if (i.size > 0) for (const [r, o] of i) {
-        const { wrapped: n } = o, l = this[r];
-        n !== !0 || this._$AL.has(r) || l === void 0 || this.C(r, void 0, o, l);
+        const { wrapped: a } = o, d = this[r];
+        a !== !0 || this._$AL.has(r) || d === void 0 || this.C(r, void 0, o, d);
       }
     }
     let t = !1;
@@ -247,39 +247,39 @@ let z = class extends HTMLElement {
   }
 };
 z.elementStyles = [], z.shadowRootOptions = { mode: "open" }, z[C("elementProperties")] = /* @__PURE__ */ new Map(), z[C("finalized")] = /* @__PURE__ */ new Map(), St?.({ ReactiveElement: z }), (U.reactiveElementVersions ??= []).push("2.1.2");
-const G = globalThis, et = (a) => a, I = G.trustedTypes, it = I ? I.createPolicy("lit-html", { createHTML: (a) => a }) : void 0, ut = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, ft = "?" + y, Ct = `<${ft}>`, b = document, E = () => b.createComment(""), j = (a) => a === null || typeof a != "object" && typeof a != "function", q = Array.isArray, Et = (a) => q(a) || typeof a?.[Symbol.iterator] == "function", D = `[ 	
+const G = globalThis, et = (n) => n, I = G.trustedTypes, it = I ? I.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ut = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, ft = "?" + y, Ct = `<${ft}>`, b = document, E = () => b.createComment(""), j = (n) => n === null || typeof n != "object" && typeof n != "function", q = Array.isArray, Et = (n) => q(n) || typeof n?.[Symbol.iterator] == "function", D = `[ 	
 \f\r]`, S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, rt = /-->/g, ot = />/g, w = RegExp(`>|${D}(?:([^\\s"'>=/]+)(${D}*=${D}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), at = /'/g, nt = /"/g, mt = /^(?:script|style|textarea|title)$/i, vt = (a) => (t, ...e) => ({ _$litType$: a, strings: t, values: e }), p = vt(1), x = vt(2), _ = /* @__PURE__ */ Symbol.for("lit-noChange"), u = /* @__PURE__ */ Symbol.for("lit-nothing"), st = /* @__PURE__ */ new WeakMap(), $ = b.createTreeWalker(b, 129);
-function xt(a, t) {
-  if (!q(a) || !a.hasOwnProperty("raw")) throw Error("invalid template strings array");
+\f\r"'\`<>=]|("|')|))|$)`, "g"), at = /'/g, nt = /"/g, mt = /^(?:script|style|textarea|title)$/i, vt = (n) => (t, ...e) => ({ _$litType$: n, strings: t, values: e }), p = vt(1), x = vt(2), _ = /* @__PURE__ */ Symbol.for("lit-noChange"), u = /* @__PURE__ */ Symbol.for("lit-nothing"), st = /* @__PURE__ */ new WeakMap(), $ = b.createTreeWalker(b, 129);
+function xt(n, t) {
+  if (!q(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return it !== void 0 ? it.createHTML(t) : t;
 }
-const jt = (a, t) => {
-  const e = a.length - 1, i = [];
-  let r, o = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", n = S;
-  for (let l = 0; l < e; l++) {
-    const s = a[l];
+const jt = (n, t) => {
+  const e = n.length - 1, i = [];
+  let r, o = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", a = S;
+  for (let d = 0; d < e; d++) {
+    const s = n[d];
     let c, f, h = -1, m = 0;
-    for (; m < s.length && (n.lastIndex = m, f = n.exec(s), f !== null); ) m = n.lastIndex, n === S ? f[1] === "!--" ? n = rt : f[1] !== void 0 ? n = ot : f[2] !== void 0 ? (mt.test(f[2]) && (r = RegExp("</" + f[2], "g")), n = w) : f[3] !== void 0 && (n = w) : n === w ? f[0] === ">" ? (n = r ?? S, h = -1) : f[1] === void 0 ? h = -2 : (h = n.lastIndex - f[2].length, c = f[1], n = f[3] === void 0 ? w : f[3] === '"' ? nt : at) : n === nt || n === at ? n = w : n === rt || n === ot ? n = S : (n = w, r = void 0);
-    const v = n === w && a[l + 1].startsWith("/>") ? " " : "";
-    o += n === S ? s + Ct : h >= 0 ? (i.push(c), s.slice(0, h) + ut + s.slice(h) + y + v) : s + y + (h === -2 ? l : v);
+    for (; m < s.length && (a.lastIndex = m, f = a.exec(s), f !== null); ) m = a.lastIndex, a === S ? f[1] === "!--" ? a = rt : f[1] !== void 0 ? a = ot : f[2] !== void 0 ? (mt.test(f[2]) && (r = RegExp("</" + f[2], "g")), a = w) : f[3] !== void 0 && (a = w) : a === w ? f[0] === ">" ? (a = r ?? S, h = -1) : f[1] === void 0 ? h = -2 : (h = a.lastIndex - f[2].length, c = f[1], a = f[3] === void 0 ? w : f[3] === '"' ? nt : at) : a === nt || a === at ? a = w : a === rt || a === ot ? a = S : (a = w, r = void 0);
+    const v = a === w && n[d + 1].startsWith("/>") ? " " : "";
+    o += a === S ? s + Ct : h >= 0 ? (i.push(c), s.slice(0, h) + ut + s.slice(h) + y + v) : s + y + (h === -2 ? d : v);
   }
-  return [xt(a, o + (a[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
+  return [xt(n, o + (n[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
 };
 class P {
   constructor({ strings: t, _$litType$: e }, i) {
     let r;
     this.parts = [];
-    let o = 0, n = 0;
-    const l = t.length - 1, s = this.parts, [c, f] = jt(t, e);
+    let o = 0, a = 0;
+    const d = t.length - 1, s = this.parts, [c, f] = jt(t, e);
     if (this.el = P.createElement(c, i), $.currentNode = this.el.content, e === 2 || e === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
     }
-    for (; (r = $.nextNode()) !== null && s.length < l; ) {
+    for (; (r = $.nextNode()) !== null && s.length < d; ) {
       if (r.nodeType === 1) {
         if (r.hasAttributes()) for (const h of r.getAttributeNames()) if (h.endsWith(ut)) {
-          const m = f[n++], v = r.getAttribute(h).split(y), g = /([.?@])?(.*)/.exec(m);
+          const m = f[a++], v = r.getAttribute(h).split(y), g = /([.?@])?(.*)/.exec(m);
           s.push({ type: 1, index: o, name: g[2], strings: v, ctor: g[1] === "." ? Ht : g[1] === "?" ? Rt : g[1] === "@" ? Ot : V }), r.removeAttribute(h);
         } else h.startsWith(y) && (s.push({ type: 6, index: o }), r.removeAttribute(h));
         if (mt.test(r.tagName)) {
@@ -303,11 +303,11 @@ class P {
     return i.innerHTML = t, i;
   }
 }
-function M(a, t, e = a, i) {
+function M(n, t, e = n, i) {
   if (t === _) return t;
   let r = i !== void 0 ? e._$Co?.[i] : e._$Cl;
   const o = j(t) ? void 0 : t._$litDirective$;
-  return r?.constructor !== o && (r?._$AO?.(!1), o === void 0 ? r = void 0 : (r = new o(a), r._$AT(a, e, i)), i !== void 0 ? (e._$Co ??= [])[i] = r : e._$Cl = r), r !== void 0 && (t = M(a, r._$AS(a, t.values), r, i)), t;
+  return r?.constructor !== o && (r?._$AO?.(!1), o === void 0 ? r = void 0 : (r = new o(n), r._$AT(n, e, i)), i !== void 0 ? (e._$Co ??= [])[i] = r : e._$Cl = r), r !== void 0 && (t = M(n, r._$AS(n, t.values), r, i)), t;
 }
 class Pt {
   constructor(t, e) {
@@ -322,13 +322,13 @@ class Pt {
   u(t) {
     const { el: { content: e }, parts: i } = this._$AD, r = (t?.creationScope ?? b).importNode(e, !0);
     $.currentNode = r;
-    let o = $.nextNode(), n = 0, l = 0, s = i[0];
+    let o = $.nextNode(), a = 0, d = 0, s = i[0];
     for (; s !== void 0; ) {
-      if (n === s.index) {
+      if (a === s.index) {
         let c;
-        s.type === 2 ? c = new H(o, o.nextSibling, this, t) : s.type === 1 ? c = new s.ctor(o, s.name, s.strings, this, t) : s.type === 6 && (c = new Nt(o, this, t)), this._$AV.push(c), s = i[++l];
+        s.type === 2 ? c = new H(o, o.nextSibling, this, t) : s.type === 1 ? c = new s.ctor(o, s.name, s.strings, this, t) : s.type === 6 && (c = new Nt(o, this, t)), this._$AV.push(c), s = i[++d];
       }
-      n !== s?.index && (o = $.nextNode(), n++);
+      a !== s?.index && (o = $.nextNode(), a++);
     }
     return $.currentNode = b, r;
   }
@@ -371,8 +371,8 @@ class H {
     const { values: e, _$litType$: i } = t, r = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = P.createElement(xt(i.h, i.h[0]), this.options)), i);
     if (this._$AH?._$AD === r) this._$AH.p(e);
     else {
-      const o = new Pt(r, this), n = o.u(this.options);
-      o.p(e), this.T(n), this._$AH = o;
+      const o = new Pt(r, this), a = o.u(this.options);
+      o.p(e), this.T(a), this._$AH = o;
     }
   }
   _$AC(t) {
@@ -408,14 +408,14 @@ class V {
   }
   _$AI(t, e = this, i, r) {
     const o = this.strings;
-    let n = !1;
-    if (o === void 0) t = M(this, t, e, 0), n = !j(t) || t !== this._$AH && t !== _, n && (this._$AH = t);
+    let a = !1;
+    if (o === void 0) t = M(this, t, e, 0), a = !j(t) || t !== this._$AH && t !== _, a && (this._$AH = t);
     else {
-      const l = t;
+      const d = t;
       let s, c;
-      for (t = o[0], s = 0; s < o.length - 1; s++) c = M(this, l[i + s], e, s), c === _ && (c = this._$AH[s]), n ||= !j(c) || c !== this._$AH[s], c === u ? t = u : t !== u && (t += (c ?? "") + o[s + 1]), this._$AH[s] = c;
+      for (t = o[0], s = 0; s < o.length - 1; s++) c = M(this, d[i + s], e, s), c === _ && (c = this._$AH[s]), a ||= !j(c) || c !== this._$AH[s], c === u ? t = u : t !== u && (t += (c ?? "") + o[s + 1]), this._$AH[s] = c;
     }
-    n && !r && this.j(t);
+    a && !r && this.j(t);
   }
   j(t) {
     t === u ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, t ?? "");
@@ -463,14 +463,14 @@ class Nt {
 }
 const It = G.litHtmlPolyfillSupport;
 It?.(P, H), (G.litHtmlVersions ??= []).push("3.3.3");
-const Tt = (a, t, e) => {
+const Tt = (n, t, e) => {
   const i = e?.renderBefore ?? t;
   let r = i._$litPart$;
   if (r === void 0) {
     const o = e?.renderBefore ?? null;
     i._$litPart$ = r = new H(t.insertBefore(E(), o), o, void 0, e ?? {});
   }
-  return r._$AI(a), r;
+  return r._$AI(n), r;
 };
 const J = globalThis;
 let A = class extends z {
@@ -499,7 +499,7 @@ A._$litElement$ = !0, A.finalized = !0, J.litElementHydrateSupport?.({ LitElemen
 const Ut = J.litElementPolyfillSupport;
 Ut?.({ LitElement: A });
 (J.litElementVersions ??= []).push("4.2.2");
-const Vt = { CHILD: 2 }, Lt = (a) => (...t) => ({ _$litDirective$: a, values: t });
+const Vt = { CHILD: 2 }, Lt = (n) => (...t) => ({ _$litDirective$: n, values: t });
 class Dt {
   constructor(t) {
   }
@@ -560,9 +560,9 @@ const lt = Lt(F), Bt = '<svg xmlns="http://www.w3.org/2000/svg" width="760" heig
     { id: "gym", name: "Siłownia", x: 57, y: 2, width: 41, height: 57 },
     { id: "garage", name: "Garaż", x: 2, y: 60, width: 96, height: 38 }
   ] }
-}, Jt = (a) => !a || ["unknown", "unavailable", "none", "null"].includes(a.toLowerCase());
-function Yt(a, t, e = 1) {
-  const i = t ? a?.states[t] : void 0;
+}, Jt = (n) => !n || ["unknown", "unavailable", "none", "null"].includes(n.toLowerCase());
+function Yt(n, t, e = 1) {
+  const i = t ? n?.states[t] : void 0;
   if (!i || Jt(i.state)) return { text: "—", value: void 0, unit: "", entity: t };
   const r = Number(i.state), o = String(i.attributes.unit_of_measurement ?? "");
   return Number.isFinite(r) ? { text: `${r.toFixed(e)}${o ? ` ${o}` : ""}`, value: r, unit: o, entity: t } : { text: i.state, value: void 0, unit: o, entity: t };
@@ -594,31 +594,31 @@ class Qt extends A {
   updateRiser(t, e, i) {
     const r = this.clone();
     r.entities ??= {};
-    const o = [...r.entities.risers ?? O].map((n) => ({ ...n }));
+    const o = [...r.entities.risers ?? O].map((a) => ({ ...a }));
     for (; o.length < 3; ) o.push({ ...O[o.length] });
     o[t][e] = i || void 0, r.entities.risers = o, this.emit(r);
   }
   updateRoom(t, e, i, r) {
     const o = this.clone();
     o.rooms ??= {};
-    const n = [...o.rooms[t] ?? []].map((s) => ({ ...s }));
-    let l = n.find((s) => s.id === e);
-    l || (l = { id: e }, n.push(l)), i === "target" || i === "tolerance" ? l[i] = r === "" ? void 0 : Number(r) : l[i] = r || void 0, o.rooms[t] = n, this.emit(o);
+    const a = [...o.rooms[t] ?? []].map((s) => ({ ...s }));
+    let d = a.find((s) => s.id === e);
+    d || (d = { id: e }, a.push(d)), i === "target" || i === "tolerance" ? d[i] = r === "" ? void 0 : Number(r) : d[i] = r || void 0, o.rooms[t] = a, this.emit(o);
   }
-  updateCurvePoint(t, e) {
-    const i = this.clone(), r = [...i.heating_curve?.points ?? [{ outside: -15 }, { outside: -5 }, { outside: 5 }, { outside: 15 }]].map((o) => ({ ...o }));
-    r[t].outside = Number(e), i.heating_curve = { points: r }, this.emit(i);
+  updateCurvePoint(t, e, i) {
+    const r = this.clone(), o = [...r.heating_curve?.points ?? [{}, {}, {}, {}]].map((a) => ({ ...a }));
+    o[t][e] = i || void 0, r.heating_curve = { points: o }, this.emit(r);
   }
   updateCurveEntity(t, e) {
     const i = this.clone(), r = [...i.heating_curve?.points ?? [{ outside: -15 }, { outside: -5 }, { outside: 5 }, { outside: 15 }]].map((o) => ({ ...o }));
     r[t].entity = e || void 0, i.heating_curve = { points: r }, this.emit(i);
   }
   curveEditor() {
-    const t = this._config?.heating_curve?.points ?? [{ outside: -15 }, { outside: -5 }, { outside: 5 }, { outside: 15 }];
-    return p`<details><summary>Krzywa grzewcza — encje Neoheat</summary><p>Wybierz encję Neoheat dla każdego punktu. Wykres odczytuje jej aktualną wartość, zamiast używać wpisanej ręcznie temperatury.</p><div class="curve-points">${t.map((e, i) => p`<div class="two"><label>Na zewnątrz<input type="number" step="0.1" .value=${String(e.outside)} @input=${(r) => this.updateCurvePoint(i, r.target.value)}></label><label>Encja punktu krzywej<ha-entity-picker .hass=${this.hass} .value=${e.entity ?? ""} @value-changed=${(r) => this.updateCurveEntity(i, r.detail.value)} allow-custom-entity></ha-entity-picker></label></div>`)}</div></details>`;
+    const t = this._config?.heating_curve?.points ?? [{}, {}, {}, {}];
+    return p`<section class="curve-editor"><h3>Krzywa grzewcza</h3><p>Wybierz encję temperatury zewnętrznej i encję zasilania CO z integracji Neoheat dla każdego punktu.</p><div class="curve-points">${t.map((e, i) => p`<fieldset><legend>Punkt ${i + 1}</legend><label>Temperatura zewnętrzna — encja<ha-entity-picker .hass=${this.hass} .value=${e.outside_entity ?? ""} @value-changed=${(r) => this.updateCurvePoint(i, "outside_entity", r.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Zasilanie CO — encja<ha-entity-picker .hass=${this.hass} .value=${e.entity ?? ""} @value-changed=${(r) => this.updateCurveEntity(i, r.detail.value)} allow-custom-entity></ha-entity-picker></label></fieldset>`)}</div></section>`;
   }
   picker(t, e, i = !1) {
-    const r = this._config?.entities ?? {}, o = p`<label>${t}${i ? p` <small>opcjonalnie</small>` : u}<ha-entity-picker .hass=${this.hass} .value=${r[e] ?? ""} @value-changed=${(n) => this.updateEntity(e, n.detail.value)} allow-custom-entity></ha-entity-picker></label>`;
+    const r = this._config?.entities ?? {}, o = p`<label>${t}${i ? p` <small>opcjonalnie</small>` : u}<ha-entity-picker .hass=${this.hass} .value=${r[e] ?? ""} @value-changed=${(a) => this.updateEntity(e, a.detail.value)} allow-custom-entity></ha-entity-picker></label>`;
     return e === "fan_speed" ? p`${this.picker("Wentylator 1 — RPM", "fan1_speed", !0)}${this.picker("Wentylator 2 — RPM", "fan2_speed", !0)}` : e === "circulation_status" ? p`${o}${this.picker("Stan pompy obiegowej P2", "circulation2_status", !0)}` : o;
   }
   select(t, e, i) {
@@ -626,7 +626,7 @@ class Qt extends A {
   }
   roomEditor(t) {
     const e = this._config?.rooms?.[t] ?? [];
-    return p`${t === "ground" ? this.curveEditor() : u}<details><summary>${T[t].name} — pokoje i czujniki</summary><div class="rooms">${T[t].rooms.filter((i) => i.sensor !== !1).map((i) => {
+    return p`<details><summary>${T[t].name} — pokoje i czujniki</summary><div class="rooms">${T[t].rooms.filter((i) => i.sensor !== !1).map((i) => {
       const r = e.find((o) => o.id === i.id) ?? { id: i.id };
       return p`<fieldset><legend>${r.name ?? i.name}</legend><label>Nazwa<input .value=${r.name ?? ""} placeholder=${i.name} @input=${(o) => this.updateRoom(t, i.id, "name", o.target.value)}></label><label>Encja temperatury<ha-entity-picker .hass=${this.hass} .value=${r.entity ?? ""} @value-changed=${(o) => this.updateRoom(t, i.id, "entity", o.detail.value)} allow-custom-entity></ha-entity-picker></label><div class="two"><label>Temperatura zadana<input type="number" step="0.1" .value=${r.target?.toString() ?? ""} @input=${(o) => this.updateRoom(t, i.id, "target", o.target.value)}></label><label>Tolerancja °C<input type="number" step="0.1" min="0" .value=${r.tolerance?.toString() ?? ""} @input=${(o) => this.updateRoom(t, i.id, "tolerance", o.target.value)}></label></div></fieldset>`;
     })}</div></details>`;
@@ -635,10 +635,10 @@ class Qt extends A {
     const t = this._config ?? {}, i = (t.entities ?? {}).risers ?? O;
     return p`<div class="editor"><h3>Układ i prezentacja</h3><label>Szablon<select .value=${t.layout ?? "central"} @change=${(r) => this.updateRoot("layout", r.target.value)}><option value="central">Centralny rzut i panel CO</option><option value="floors_over_co">Dwa rzuty nad instalacją</option></select></label>${t.layout !== "floors_over_co" ? this.select("Kondygnacja początkowa", t.floor ?? "ground", (r) => this.updateRoot("floor", r)) : p`<div class="two">${this.select("Lewy rzut", t.floors?.[0] ?? "ground", (r) => this.updateFloor(0, r))}${this.select("Prawy rzut", t.floors?.[1] ?? "upper", (r) => this.updateFloor(1, r))}</div>`}<label>Precyzja odczytów<select .value=${String(t.precision ?? 1)} @change=${(r) => this.updateRoot("precision", r.target.value)}><option value="0">0 miejsc po przecinku</option><option value="1">1 miejsce po przecinku</option><option value="2">2 miejsca po przecinku</option><option value="3">3 miejsca po przecinku</option></select></label><h3>Główne czujniki</h3>${this.picker("Temperatura zewnętrzna", "outside")}${this.picker("CWU", "hot_water")}${this.picker("Stan pompy", "pump_status", !0)}${this.picker("Prędkość wentylatorów", "fan_speed", !0)}${this.picker("Stan pompy obiegowej P1", "circulation_status", !0)}<h3>Pompa i bufor</h3>${this.picker("Zasilanie pompy", "pump_supply")}${this.picker("Powrót pompy", "pump_return")}${this.picker("Bufor — góra", "buffer_top")}${this.picker("Bufor — środek", "buffer_middle")}${this.picker("Bufor — dół", "buffer_bottom")}${this.picker("Wspólne zasilanie CO", "central_supply", !0)}${this.picker("Wspólny powrót CO", "central_return", !0)}<h3>Trzy piony ogrzewania</h3><div class="risers">${[0, 1, 2].map((r) => {
       const o = i[r] ?? O[r];
-      return p`<fieldset><legend>Pion ${r + 1}</legend><label>Nazwa<input .value=${o.name ?? ""} placeholder=${`Pion ${r + 1}`} @input=${(n) => this.updateRiser(r, "name", n.target.value)}></label><label>Zasilanie<ha-entity-picker .hass=${this.hass} .value=${o.supply ?? ""} @value-changed=${(n) => this.updateRiser(r, "supply", n.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Powrót<ha-entity-picker .hass=${this.hass} .value=${o.return ?? ""} @value-changed=${(n) => this.updateRiser(r, "return", n.detail.value)} allow-custom-entity></ha-entity-picker></label></fieldset>`;
+      return p`<fieldset><legend>Pion ${r + 1}</legend><label>Nazwa<input .value=${o.name ?? ""} placeholder=${`Pion ${r + 1}`} @input=${(a) => this.updateRiser(r, "name", a.target.value)}></label><label>Zasilanie<ha-entity-picker .hass=${this.hass} .value=${o.supply ?? ""} @value-changed=${(a) => this.updateRiser(r, "supply", a.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Powrót<ha-entity-picker .hass=${this.hass} .value=${o.return ?? ""} @value-changed=${(a) => this.updateRiser(r, "return", a.detail.value)} allow-custom-entity></ha-entity-picker></label></fieldset>`;
     })}</div><h3>Pomieszczenia</h3>${this.roomEditor("ground")}${this.roomEditor("upper")}${this.roomEditor("basement")}</div>`;
   }
-  static styles = ht`.editor{display:grid;gap:14px;padding:12px;max-width:680px}h3{font-size:16px;margin:12px 0 0;border-top:1px solid var(--divider-color);padding-top:14px}h3:first-child{border:0;padding-top:0;margin-top:0}label{display:grid;gap:5px;font-size:14px}small,p{color:var(--secondary-text-color)}p{font-size:13px;margin:10px 0}select,input{box-sizing:border-box;width:100%;padding:9px;border-radius:6px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);font:inherit}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.risers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}fieldset{border:1px solid var(--divider-color);border-radius:8px;display:grid;gap:9px;padding:10px;min-width:0}legend{padding:0 4px;font-weight:600}details{border:1px solid var(--divider-color);border-radius:8px;padding:10px}summary{cursor:pointer;font-weight:600}.rooms,.curve-points{display:grid;gap:10px;margin-top:12px}@media(max-width:560px){.two,.risers{grid-template-columns:1fr}}`;
+  static styles = ht`.editor{display:grid;gap:14px;padding:12px;max-width:680px}h3{font-size:16px;margin:12px 0 0;border-top:1px solid var(--divider-color);padding-top:14px}h3:first-child{border:0;padding-top:0;margin-top:0}.editor>h3:last-of-type{display:none}label{display:grid;gap:5px;font-size:14px}small,p{color:var(--secondary-text-color)}p{font-size:13px;margin:10px 0}select,input{box-sizing:border-box;width:100%;padding:9px;border-radius:6px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);font:inherit}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.risers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}fieldset{border:1px solid var(--divider-color);border-radius:8px;display:grid;gap:9px;padding:10px;min-width:0}legend{padding:0 4px;font-weight:600}details{border:1px solid var(--divider-color);border-radius:8px;padding:10px}summary{cursor:pointer;font-weight:600}.rooms,.curve-points{display:grid;gap:10px;margin-top:12px}.curve-editor{display:grid;gap:8px}.curve-editor h3{border-top:0;padding-top:0;margin-top:0}@media(max-width:560px){.two,.risers{grid-template-columns:1fr}}`;
 }
 customElements.define("dom-heat-card-editor", Qt);
 const te = "dom-heat-card", ee = {
@@ -711,7 +711,7 @@ class oe extends A {
   floorPlan(t) {
     const e = T[t], i = Gt[t].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
     return p`<section class="floor asset-floor" aria-label=${e.name}><div class="floor-title">${e.name}</div><div class="asset-canvas">${lt(i)}<svg class="asset-values" viewBox="0 0 760 600" aria-label=${`Temperatury: ${e.name}`}>${Object.entries(ie[t]).map(([r, o]) => {
-      const n = ee[t][r], l = e.rooms.find((f) => f.id === n), c = (l ? this.roomValue(t, l) : void 0)?.config?.entity;
+      const a = ee[t][r], d = e.rooms.find((f) => f.id === a), c = (d ? this.roomValue(t, d) : void 0)?.config?.entity;
       return x`<text class=${c ? "asset-value clickable" : "asset-value"} x=${o[0]} y=${o[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
     })}</svg></div></section>`;
   }
@@ -736,26 +736,26 @@ class oe extends A {
   </svg>`;
   }
   motionOverlay() {
-    const t = this.e, e = this.val(t.fan1_speed ?? t.fan_speed), i = this.val(t.fan2_speed), r = (e.value ?? 0) > 0, o = (i.value ?? 0) > 0, n = this.isRunning(t.circulation_status), l = this.isRunning(t.circulation2_status), s = this.isRunning(t.pump_status) || n;
-    return x`<svg class="motion-overlay" viewBox="0 0 1300 660" aria-label="Pompy obiegowe i przepływ"><text class="diagram-label" x="290" y="150">Zasilanie PC</text><text class="diagram-label" x="290" y="295">Powrót PC</text><text class="diagram-label" x="445" y="465">CWU</text><g class=${`heat-fan ${t.fan1_speed ?? t.fan_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan1_speed ?? t.fan_speed)}><g transform="translate(120 228)"><g class=${r ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="235">${t.fan1_speed ?? t.fan_speed ? e.text : ""}</text></g><g class=${`heat-fan ${t.fan2_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan2_speed)}><g transform="translate(120 312)"><g class=${o ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="319">${t.fan2_speed ? i.text : ""}</text></g><g class=${`p2-pump ${t.circulation2_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation2_status)}><g class=${l ? "rotating" : ""}><circle cx="390" cy="210" r="25"></circle><path d="M390 190V230M370 210H410M376 196L404 224M404 196L376 224"></path></g><text x="390" y="252">P2</text></g><g class=${`p1-pump ${t.circulation_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation_status)}><g class=${n ? "rotating" : ""}><circle cx="650" cy="210" r="25"></circle><path d="M650 190V230M630 210H670M636 196L664 224M664 196L636 224"></path></g><text x="650" y="252">P1</text></g>${l ? x`<g class="flow-dots"><path class="dot-path hot" d="M180 210H420"></path><path class="dot-path cold" d="M420 350H180"></path></g>` : u}${s ? x`<g class="flow-dots"><path class="dot-path hot" d="M560 210H1190M810 210V246M1000 210V246M1190 210V246"></path><path class="dot-path cold" d="M1190 350H560M810 315V350M1000 315V350M1190 315V350"></path></g>` : u}</svg>`;
+    const t = this.e, e = this.val(t.fan1_speed ?? t.fan_speed), i = this.val(t.fan2_speed), r = (e.value ?? 0) > 0, o = (i.value ?? 0) > 0, a = this.isRunning(t.circulation_status), d = this.isRunning(t.circulation2_status), s = this.isRunning(t.pump_status) || a;
+    return x`<svg class="motion-overlay" viewBox="0 0 1300 660" aria-label="Pompy obiegowe i przepływ"><text class="diagram-label" x="290" y="150">Zasilanie PC</text><text class="diagram-label" x="290" y="295">Powrót PC</text><text class="diagram-label" x="445" y="465">CWU</text><g class=${`heat-fan ${t.fan1_speed ?? t.fan_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan1_speed ?? t.fan_speed)}><g transform="translate(120 228)"><g class=${r ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="235">${t.fan1_speed ?? t.fan_speed ? e.text : ""}</text></g><g class=${`heat-fan ${t.fan2_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan2_speed)}><g transform="translate(120 312)"><g class=${o ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="319">${t.fan2_speed ? i.text : ""}</text></g><g class=${`p2-pump ${t.circulation2_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation2_status)}><g class=${d ? "rotating" : ""}><circle cx="390" cy="210" r="25"></circle><path d="M390 190V230M370 210H410M376 196L404 224M404 196L376 224"></path></g><text x="390" y="252">P2</text></g><g class=${`p1-pump ${t.circulation_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation_status)}><g class=${a ? "rotating" : ""}><circle cx="650" cy="210" r="25"></circle><path d="M650 190V230M630 210H670M636 196L664 224M664 196L636 224"></path></g><text x="650" y="252">P1</text></g>${d ? x`<g class="flow-dots"><path class="dot-path hot" d="M180 210H420"></path><path class="dot-path cold" d="M420 350H180"></path></g>` : u}${s ? x`<g class="flow-dots"><path class="dot-path hot" d="M560 210H1190M810 210V246M1000 210V246M1190 210V246"></path><path class="dot-path cold" d="M1190 350H560M810 315V350M1000 315V350M1190 315V350"></path></g>` : u}</svg>`;
   }
   hydronic() {
     const t = this.e, e = t.risers ?? [{ name: "Pion 1" }, { name: "Pion 2" }, { name: "Pion 3" }], i = { "pc-supply": t.pump_supply, "pc-return": t.pump_return, "buffer-top": t.buffer_top, "buffer-middle": t.buffer_middle, "buffer-bottom": t.buffer_bottom, cwu: t.hot_water, "riser-1-supply": e[0]?.supply, "riser-1-return": e[0]?.return, "riser-2-supply": e[1]?.supply, "riser-2-return": e[1]?.return, "riser-3-supply": e[2]?.supply, "riser-3-return": e[2]?.return }, r = this.config.layout === "central" && this.displayMode === "home" ? "column" : "horizontal", o = re[r];
-    let n = qt[r].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
-    return r === "horizontal" && (n = n.replace(/<text x="290" y="171"[^>]*>[^<]*<\/text>/, "").replace(/<text x="290" y="318"[^>]*>[^<]*<\/text>/, "").replace(/<text x="410\.0" y="455"[^>]*>CWU<\/text>/, "")), p`<section class=${`hydronic asset-heating ${r}`} aria-label="Instalacja centralnego ogrzewania"><div class="asset-canvas">${lt(n)}${r === "horizontal" ? this.motionOverlay() : u}<svg class="asset-values" viewBox=${o.box} aria-label="Bieżące temperatury CO">${Object.entries(o.values).map(([l, s]) => {
-      const c = i[l];
+    let a = qt[r].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
+    return r === "horizontal" && (a = a.replace(/<text x="290" y="171"[^>]*>[^<]*<\/text>/, "").replace(/<text x="290" y="318"[^>]*>[^<]*<\/text>/, "").replace(/<text x="410\.0" y="455"[^>]*>CWU<\/text>/, "")), p`<section class=${`hydronic asset-heating ${r}`} aria-label="Instalacja centralnego ogrzewania"><div class="asset-canvas">${lt(a)}${r === "horizontal" ? this.motionOverlay() : u}<svg class="asset-values" viewBox=${o.box} aria-label="Bieżące temperatury CO">${Object.entries(o.values).map(([d, s]) => {
+      const c = i[d];
       return x`<text class=${c ? "asset-value clickable" : "asset-value"} x=${s[0]} y=${s[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
     })}</svg></div></section>`;
   }
   curvePanel() {
-    const t = [...this.config.heating_curve?.points ?? []].map((d) => ({ ...d, supply: d.entity ? this.val(d.entity).value : d.supply })).filter((d) => Number.isFinite(d.outside) && Number.isFinite(d.supply)).sort((d, k) => d.outside - k.outside), e = this.val(this.e.outside), i = this.val(this.e.pump_supply), r = 920, o = 420, n = 76, l = 32, s = 38, c = 62, f = Math.min(-20, ...t.map((d) => d.outside), e.value ?? 20), h = Math.max(20, ...t.map((d) => d.outside), e.value ?? -20), m = Math.min(15, ...t.map((d) => d.supply), i.value ?? 55), v = Math.max(55, ...t.map((d) => d.supply), i.value ?? 15), g = (d) => n + (d - f) / (h - f || 1) * (r - n - l), R = (d) => o - c - (d - m) / (v - m || 1) * (o - s - c), gt = t.map((d) => `${g(d.outside)},${R(d.supply)}`).join(" ");
-    return p`<section class="curve-panel"><div class="section-title"><div><b>Krzywa grzewcza</b><span>Punkty odczytane z encji Neoheat</span></div><span>Aktualnie: ${e.text} / ${i.text}</span></div>${t.length >= 2 ? x`<svg class="curve-chart" viewBox="0 0 ${r} ${o}" aria-label="Wykres krzywej grzewczej"><line class="axis" x1=${n} y1=${o - c} x2=${r - l} y2=${o - c}></line><line class="axis" x1=${n} y1=${s} x2=${n} y2=${o - c}></line>${[0, 0.25, 0.5, 0.75, 1].map((d) => {
-      const k = s + d * (o - s - c), L = v - d * (v - m);
-      return x`<g><line class="grid" x1=${n} y1=${k} x2=${r - l} y2=${k}></line><text class="axis-label" x=${n - 12} y=${k + 5}>${L.toFixed(0)}°</text></g>`;
-    })}${[0, 0.25, 0.5, 0.75, 1].map((d) => {
-      const k = n + d * (r - n - l), L = f + d * (h - f);
+    const t = [...this.config.heating_curve?.points ?? []].map((l) => ({ ...l, outside: l.outside_entity ? this.val(l.outside_entity).value : l.outside, supply: l.entity ? this.val(l.entity).value : void 0 })).filter((l) => Number.isFinite(l.outside) && Number.isFinite(l.supply)).sort((l, k) => l.outside - k.outside), e = this.val(this.e.outside), i = this.val(this.e.pump_supply), r = 920, o = 420, a = 76, d = 32, s = 38, c = 62, f = Math.min(-20, ...t.map((l) => l.outside), e.value ?? 20), h = Math.max(20, ...t.map((l) => l.outside), e.value ?? -20), m = Math.min(15, ...t.map((l) => l.supply), i.value ?? 55), v = Math.max(55, ...t.map((l) => l.supply), i.value ?? 15), g = (l) => a + (l - f) / (h - f || 1) * (r - a - d), R = (l) => o - c - (l - m) / (v - m || 1) * (o - s - c), gt = t.map((l) => `${g(l.outside)},${R(l.supply)}`).join(" ");
+    return p`<section class="curve-panel"><div class="section-title"><div><b>Krzywa grzewcza</b><span>Punkty odczytane z encji Neoheat</span></div><span>Aktualnie: ${e.text} / ${i.text}</span></div>${t.length >= 2 ? x`<svg class="curve-chart" viewBox="0 0 ${r} ${o}" aria-label="Wykres krzywej grzewczej"><line class="axis" x1=${a} y1=${o - c} x2=${r - d} y2=${o - c}></line><line class="axis" x1=${a} y1=${s} x2=${a} y2=${o - c}></line>${[0, 0.25, 0.5, 0.75, 1].map((l) => {
+      const k = s + l * (o - s - c), L = v - l * (v - m);
+      return x`<g><line class="grid" x1=${a} y1=${k} x2=${r - d} y2=${k}></line><text class="axis-label" x=${a - 12} y=${k + 5}>${L.toFixed(0)}°</text></g>`;
+    })}${[0, 0.25, 0.5, 0.75, 1].map((l) => {
+      const k = a + l * (r - a - d), L = f + l * (h - f);
       return x`<text class="axis-label" x=${k} y=${o - 28}>${L.toFixed(0)}°</text>`;
-    })}<polyline class="curve-line" points=${gt}></polyline>${t.map((d) => x`<g><circle class="curve-point" cx=${g(d.outside)} cy=${R(d.supply)} r="7" @click=${() => this.moreInfo(d.entity)}></circle><text class="point-label" x=${g(d.outside)} y=${R(d.supply) - 14}>${d.supply}°</text></g>`)}${e.value !== void 0 && i.value !== void 0 ? x`<circle class="current-point" cx=${g(e.value)} cy=${R(i.value)} r="8" @click=${() => this.moreInfo(this.e.pump_supply)}></circle>` : u}<text class="axis-title" x=${r / 2} y=${o - 4}>Na zewnątrz</text><text class="axis-title" transform="translate(18 ${o / 2}) rotate(-90)">Zasilanie CO</text></svg>` : p`<div class="curve-empty">Przypisz co najmniej dwie encje Neoheat do punktów krzywej w edytorze karty.</div>`}</section>`;
+    })}<polyline class="curve-line" points=${gt}></polyline>${t.map((l) => x`<g><circle class="curve-point" cx=${g(l.outside)} cy=${R(l.supply)} r="7" @click=${() => this.moreInfo(l.entity)}></circle><text class="point-label" x=${g(l.outside)} y=${R(l.supply) - 14}>${l.supply}°</text></g>`)}${e.value !== void 0 && i.value !== void 0 ? x`<circle class="current-point" cx=${g(e.value)} cy=${R(i.value)} r="8" @click=${() => this.moreInfo(this.e.pump_supply)}></circle>` : u}<text class="axis-title" x=${r / 2} y=${o - 4}>Na zewnątrz</text><text class="axis-title" transform="translate(18 ${o / 2}) rotate(-90)">Zasilanie CO</text></svg>` : p`<div class="curve-empty">Przypisz co najmniej dwie encje Neoheat do punktów krzywej w edytorze karty.</div>`}</section>`;
   }
   viewSwitch() {
     return p`<footer><div class="view-switch"><button class=${this.displayMode === "home" ? "active" : ""} @click=${() => this.displayMode = "home"}>Dom + CO</button><button class=${this.displayMode === "heating" ? "active" : ""} @click=${() => this.displayMode = "heating"}>Pełny układ CO</button><button class=${this.displayMode === "curve" ? "active" : ""} @click=${() => this.displayMode = "curve"}>Krzywa grzewcza</button></div><small>Podgląd temperatur · rzut poglądowy, bez skali</small></footer>`;

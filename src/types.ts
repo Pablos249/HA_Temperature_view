@@ -7,7 +7,7 @@ export interface HeatEntities {
   buffer_top?: string; buffer_middle?: string; buffer_bottom?: string; central_supply?: string; central_return?: string;
   circulation_status?: string; circulation2_status?: string; risers?: Array<{ name?: string; supply?: string; return?: string }>;
 }
-export interface HeatingCurvePoint { outside: number; entity?: string; supply?: number; }
+export interface HeatingCurvePoint { outside?: number; outside_entity?: string; entity?: string; supply?: number; }
 export interface HeatingCurve { points?: HeatingCurvePoint[]; }
 export interface DomHeatConfig {
   type: "custom:dom-heat-card"; layout?: Layout; floor?: FloorId; floors?: [FloorId, FloorId];
