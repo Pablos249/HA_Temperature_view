@@ -249,8 +249,8 @@ let A = class extends HTMLElement {
 A.elementStyles = [], A.shadowRootOptions = { mode: "open" }, A[P("elementProperties")] = /* @__PURE__ */ new Map(), A[P("finalized")] = /* @__PURE__ */ new Map(), Ct?.({ ReactiveElement: A }), (U.reactiveElementVersions ??= []).push("2.1.2");
 const G = globalThis, et = (n) => n, T = G.trustedTypes, it = T ? T.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ut = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, ft = "?" + y, St = `<${ft}>`, _ = document, j = () => _.createComment(""), E = (n) => n === null || typeof n != "object" && typeof n != "function", q = Array.isArray, Pt = (n) => q(n) || typeof n?.[Symbol.iterator] == "function", D = `[ 	
 \f\r]`, S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, rt = /-->/g, ot = />/g, $ = RegExp(`>|${D}(?:([^\\s"'>=/]+)(${D}*=${D}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), at = /'/g, nt = /"/g, mt = /^(?:script|style|textarea|title)$/i, vt = (n) => (t, ...e) => ({ _$litType$: n, strings: t, values: e }), h = vt(1), g = vt(2), z = /* @__PURE__ */ Symbol.for("lit-noChange"), u = /* @__PURE__ */ Symbol.for("lit-nothing"), st = /* @__PURE__ */ new WeakMap(), b = _.createTreeWalker(_, 129);
-function xt(n, t) {
+\f\r"'\`<>=]|("|')|))|$)`, "g"), at = /'/g, nt = /"/g, mt = /^(?:script|style|textarea|title)$/i, vt = (n) => (t, ...e) => ({ _$litType$: n, strings: t, values: e }), h = vt(1), x = vt(2), z = /* @__PURE__ */ Symbol.for("lit-noChange"), u = /* @__PURE__ */ Symbol.for("lit-nothing"), st = /* @__PURE__ */ new WeakMap(), b = _.createTreeWalker(_, 129);
+function gt(n, t) {
   if (!q(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return it !== void 0 ? it.createHTML(t) : t;
 }
@@ -264,7 +264,7 @@ const jt = (n, t) => {
     const v = a === $ && n[l + 1].startsWith("/>") ? " " : "";
     o += a === S ? s + St : p >= 0 ? (i.push(c), s.slice(0, p) + ut + s.slice(p) + y + v) : s + y + (p === -2 ? l : v);
   }
-  return [xt(n, o + (n[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
+  return [gt(n, o + (n[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
 };
 class H {
   constructor({ strings: t, _$litType$: e }, i) {
@@ -279,8 +279,8 @@ class H {
     for (; (r = b.nextNode()) !== null && s.length < l; ) {
       if (r.nodeType === 1) {
         if (r.hasAttributes()) for (const p of r.getAttributeNames()) if (p.endsWith(ut)) {
-          const m = f[a++], v = r.getAttribute(p).split(y), x = /([.?@])?(.*)/.exec(m);
-          s.push({ type: 1, index: o, name: x[2], strings: v, ctor: x[1] === "." ? Ht : x[1] === "?" ? Rt : x[1] === "@" ? Ot : V }), r.removeAttribute(p);
+          const m = f[a++], v = r.getAttribute(p).split(y), g = /([.?@])?(.*)/.exec(m);
+          s.push({ type: 1, index: o, name: g[2], strings: v, ctor: g[1] === "." ? Ht : g[1] === "?" ? Rt : g[1] === "@" ? Ot : V }), r.removeAttribute(p);
         } else p.startsWith(y) && (s.push({ type: 6, index: o }), r.removeAttribute(p));
         if (mt.test(r.tagName)) {
           const p = r.textContent.split(y), m = p.length - 1;
@@ -368,7 +368,7 @@ class R {
     this._$AH !== u && E(this._$AH) ? this._$AA.nextSibling.data = t : this.T(_.createTextNode(t)), this._$AH = t;
   }
   $(t) {
-    const { values: e, _$litType$: i } = t, r = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = H.createElement(xt(i.h, i.h[0]), this.options)), i);
+    const { values: e, _$litType$: i } = t, r = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = H.createElement(gt(i.h, i.h[0]), this.options)), i);
     if (this._$AH?._$AD === r) this._$AH.p(e);
     else {
       const o = new Et(r, this), a = o.u(this.options);
@@ -614,6 +614,10 @@ class Qt extends M {
     const r = this.clone(), o = [...r.heating_curve?.points ?? [{}, {}, {}, {}]].map((a) => ({ ...a }));
     o[t][e] = i || void 0, r.heating_curve = { points: o }, this.emit(r);
   }
+  updateCurveGuide(t, e) {
+    const i = this.clone();
+    i.heating_curve = { ...i.heating_curve ?? {}, [t]: e || void 0 }, this.emit(i);
+  }
   updateCurveEntity(t, e) {
     const i = this.clone(), r = [...i.heating_curve?.points ?? [{ outside: -15 }, { outside: -5 }, { outside: 5 }, { outside: 15 }]].map((o) => ({ ...o }));
     r[t].entity = e || void 0, i.heating_curve = { points: r }, this.emit(i);
@@ -628,7 +632,7 @@ class Qt extends M {
   }
   curveEditor() {
     const t = this._config?.heating_curve?.points ?? [{}, {}, {}, {}];
-    return h`<section class="curve-editor"><h3>Krzywa grzewcza</h3><p>Wybierz encję temperatury zewnętrznej i encję zasilania CO z integracji Neoheat dla każdego punktu.</p><div class="curve-points">${t.map((e, i) => h`<fieldset><legend>Punkt ${i + 1}</legend><label>Temperatura zewnętrzna — encja<ha-entity-picker .hass=${this.hass} .value=${e.outside_entity ?? ""} @value-changed=${(r) => this.updateCurvePoint(i, "outside_entity", r.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Zasilanie CO — encja<ha-entity-picker .hass=${this.hass} .value=${e.entity ?? ""} @value-changed=${(r) => this.updateCurveEntity(i, r.detail.value)} allow-custom-entity></ha-entity-picker></label><button type="button" ?disabled=${t.length <= 2} @click=${() => this.removeCurvePoint(i)}>Usuń punkt</button></fieldset>`)}</div><button type="button" @click=${() => this.addCurvePoint()}>＋ Dodaj punkt krzywej</button></section>`;
+    return h`<section class="curve-editor"><h3>Krzywa grzewcza</h3><p>Wybierz encję temperatury zewnętrznej i encję zasilania CO z integracji Neoheat dla każdego punktu.</p><div class="two"><label>Aktualna temperatura zewn�trzna � linia pionowa<ha-entity-picker .hass=${this.hass} .value=${this._config?.heating_curve?.current_outside_entity ?? ""} @value-changed=${(e) => this.updateCurveGuide("current_outside_entity", e.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Aktualna temperatura zadana CO � linia pozioma<ha-entity-picker .hass=${this.hass} .value=${this._config?.heating_curve?.current_supply_entity ?? ""} @value-changed=${(e) => this.updateCurveGuide("current_supply_entity", e.detail.value)} allow-custom-entity></ha-entity-picker></label></div><div class="curve-points">${t.map((e, i) => h`<fieldset><legend>Punkt ${i + 1}</legend><label>Temperatura zewnętrzna — encja<ha-entity-picker .hass=${this.hass} .value=${e.outside_entity ?? ""} @value-changed=${(r) => this.updateCurvePoint(i, "outside_entity", r.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Zasilanie CO — encja<ha-entity-picker .hass=${this.hass} .value=${e.entity ?? ""} @value-changed=${(r) => this.updateCurveEntity(i, r.detail.value)} allow-custom-entity></ha-entity-picker></label><button type="button" ?disabled=${t.length <= 2} @click=${() => this.removeCurvePoint(i)}>Usuń punkt</button></fieldset>`)}</div><button type="button" @click=${() => this.addCurvePoint()}>＋ Dodaj punkt krzywej</button></section>`;
   }
   picker(t, e, i = !1) {
     const r = this._config?.entities ?? {}, o = h`<label>${t}${i ? h` <small>opcjonalnie</small>` : u}<ha-entity-picker .hass=${this.hass} .value=${r[e] ?? ""} @value-changed=${(a) => this.updateEntity(e, a.detail.value)} allow-custom-entity></ha-entity-picker></label>`;
@@ -725,7 +729,7 @@ class oe extends M {
     const e = I[t], i = Gt[t].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
     return h`<section class="floor asset-floor" aria-label=${e.name}><div class="floor-title">${e.name}</div><div class="asset-canvas">${lt(i)}<svg class="asset-values" viewBox="0 0 760 600" aria-label=${`Temperatury: ${e.name}`}>${Object.entries(ie[t]).map(([r, o]) => {
       const a = ee[t][r], l = e.rooms.find((f) => f.id === a), c = (l ? this.roomValue(t, l) : void 0)?.config?.entity;
-      return g`<text class=${c ? "asset-value clickable" : "asset-value"} x=${o[0]} y=${o[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
+      return x`<text class=${c ? "asset-value clickable" : "asset-value"} x=${o[0]} y=${o[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
     })}</svg></div></section>`;
   }
   metric(t, e, i = "") {
@@ -737,7 +741,7 @@ class oe extends M {
     return h`<header class="header"><div><div class="eyebrow">${t ? "WIDOK ŁĄCZONY" : "INSPIRACJA PRZYKŁADEM"}</div><h2>${t ? "Centralny rzut i pasek CO" : "Dwa rzuty nad instalacją"}</h2></div><div class="head-metrics">${this.metric("Na zewnątrz", this.e.outside)}${this.e.pump_status ? h`<button class="status" @click=${() => this.moreInfo(this.e.pump_status)}><span>Pompa</span><strong>${this.hass?.states[this.e.pump_status]?.state ?? "Niedostępny"}</strong></button>` : u}</div></header>`;
   }
   schemeArt() {
-    return g`<svg class="scheme-art" viewBox="0 0 1000 390" preserveAspectRatio="none" aria-hidden="true">
+    return x`<svg class="scheme-art" viewBox="0 0 1000 390" preserveAspectRatio="none" aria-hidden="true">
     <defs><marker id="heat-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--line-supply)"></path></marker><marker id="return-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--line-return)"></path></marker></defs>
     <path class="pipe supply-pipe" d="M125 160 H325 C350 160 350 160 375 160 H865"></path><path class="pipe return-pipe" d="M865 276 H375 C350 276 350 276 325 276 H125"></path>
     <path class="flow supply-flow" d="M175 160 H300 M420 160 H510 M640 160 H800" marker-end="url(#heat-arrow)"></path><path class="flow return-flow" d="M800 276 H650 M510 276 H420 M300 276 H175" marker-end="url(#return-arrow)"></path>
@@ -750,25 +754,25 @@ class oe extends M {
   }
   motionOverlay() {
     const t = this.e, e = this.val(t.fan1_speed ?? t.fan_speed), i = this.val(t.fan2_speed), r = (e.value ?? 0) > 0, o = (i.value ?? 0) > 0, a = this.isRunning(t.circulation_status), l = this.isRunning(t.circulation2_status), s = this.isRunning(t.pump_status) || a;
-    return g`<svg class="motion-overlay" viewBox="0 0 1300 660" aria-label="Pompy obiegowe i przepływ"><text class="diagram-label" x="290" y="150">Zasilanie PC</text><text class="diagram-label" x="290" y="295">Powrót PC</text><text class="diagram-label" x="445" y="465">CWU</text><g class=${`heat-fan ${t.fan1_speed ?? t.fan_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan1_speed ?? t.fan_speed)}><g transform="translate(120 228)"><g class=${r ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="235">${t.fan1_speed ?? t.fan_speed ? e.text : ""}</text></g><g class=${`heat-fan ${t.fan2_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan2_speed)}><g transform="translate(120 312)"><g class=${o ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="319">${t.fan2_speed ? i.text : ""}</text></g><g class=${`p2-pump ${t.circulation2_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation2_status)}><g class=${l ? "rotating" : ""}><circle cx="390" cy="210" r="25"></circle><path d="M390 190V230M370 210H410M376 196L404 224M404 196L376 224"></path></g><text x="390" y="252">P2</text></g><g class=${`p1-pump ${t.circulation_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation_status)}><g class=${a ? "rotating" : ""}><circle cx="650" cy="210" r="25"></circle><path d="M650 190V230M630 210H670M636 196L664 224M664 196L636 224"></path></g><text x="650" y="252">P1</text></g>${l ? g`<g class="flow-dots"><path class="dot-path hot" d="M180 210H420"></path><path class="dot-path cold" d="M420 350H180"></path></g>` : u}${s ? g`<g class="flow-dots"><path class="dot-path hot" d="M560 210H1190M810 210V246M1000 210V246M1190 210V246"></path><path class="dot-path cold" d="M1190 350H560M810 315V350M1000 315V350M1190 315V350"></path></g>` : u}</svg>`;
+    return x`<svg class="motion-overlay" viewBox="0 0 1300 660" aria-label="Pompy obiegowe i przepływ"><text class="diagram-label" x="290" y="150">Zasilanie PC</text><text class="diagram-label" x="290" y="295">Powrót PC</text><text class="diagram-label" x="445" y="465">CWU</text><g class=${`heat-fan ${t.fan1_speed ?? t.fan_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan1_speed ?? t.fan_speed)}><g transform="translate(120 228)"><g class=${r ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="235">${t.fan1_speed ?? t.fan_speed ? e.text : ""}</text></g><g class=${`heat-fan ${t.fan2_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan2_speed)}><g transform="translate(120 312)"><g class=${o ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="319">${t.fan2_speed ? i.text : ""}</text></g><g class=${`p2-pump ${t.circulation2_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation2_status)}><g class=${l ? "rotating" : ""}><circle cx="390" cy="210" r="25"></circle><path d="M390 190V230M370 210H410M376 196L404 224M404 196L376 224"></path></g><text x="390" y="252">P2</text></g><g class=${`p1-pump ${t.circulation_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation_status)}><g class=${a ? "rotating" : ""}><circle cx="650" cy="210" r="25"></circle><path d="M650 190V230M630 210H670M636 196L664 224M664 196L636 224"></path></g><text x="650" y="252">P1</text></g>${l ? x`<g class="flow-dots"><path class="dot-path hot" d="M180 210H420"></path><path class="dot-path cold" d="M420 350H180"></path></g>` : u}${s ? x`<g class="flow-dots"><path class="dot-path hot" d="M560 210H1190M810 210V246M1000 210V246M1190 210V246"></path><path class="dot-path cold" d="M1190 350H560M810 315V350M1000 315V350M1190 315V350"></path></g>` : u}</svg>`;
   }
   hydronic() {
     const t = this.e, e = t.risers ?? [{ name: "Pion 1" }, { name: "Pion 2" }, { name: "Pion 3" }], i = { "pc-supply": t.pump_supply, "pc-return": t.pump_return, "buffer-top": t.buffer_top, "buffer-middle": t.buffer_middle, "buffer-bottom": t.buffer_bottom, cwu: t.hot_water, "riser-1-supply": e[0]?.supply, "riser-1-return": e[0]?.return, "riser-2-supply": e[1]?.supply, "riser-2-return": e[1]?.return, "riser-3-supply": e[2]?.supply, "riser-3-return": e[2]?.return }, r = this.config.layout === "central" && this.displayMode === "home" ? "column" : "horizontal", o = re[r];
     let a = qt[r].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
     return r === "horizontal" && (a = a.replace(/<text x="290" y="171"[^>]*>[^<]*<\/text>/, "").replace(/<text x="290" y="318"[^>]*>[^<]*<\/text>/, "").replace(/<text x="410\.0" y="455"[^>]*>CWU<\/text>/, "")), h`<section class=${`hydronic asset-heating ${r}`} aria-label="Instalacja centralnego ogrzewania"><div class="asset-canvas">${lt(a)}${r === "horizontal" ? this.motionOverlay() : u}<svg class="asset-values" viewBox=${o.box} aria-label="Bieżące temperatury CO">${Object.entries(o.values).map(([l, s]) => {
       const c = i[l];
-      return g`<text class=${c ? "asset-value clickable" : "asset-value"} x=${s[0]} y=${s[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
+      return x`<text class=${c ? "asset-value clickable" : "asset-value"} x=${s[0]} y=${s[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
     })}</svg></div></section>`;
   }
   curvePanel() {
-    const t = [...this.config.heating_curve?.points ?? []].map((d) => ({ ...d, outside: d.outside_entity ? this.val(d.outside_entity).value : d.outside, supply: d.entity ? this.val(d.entity).value : void 0 })).filter((d) => Number.isFinite(d.outside) && Number.isFinite(d.supply)).sort((d, w) => d.outside - w.outside), e = this.val(this.e.outside), i = this.val(this.e.pump_supply), r = 920, o = 420, a = 76, l = 32, s = 38, c = 62, f = Math.min(-20, ...t.map((d) => d.outside), e.value ?? 20), p = Math.max(20, ...t.map((d) => d.outside), e.value ?? -20), m = Math.min(15, ...t.map((d) => d.supply), i.value ?? 55), v = Math.max(55, ...t.map((d) => d.supply), i.value ?? 15), x = (d) => a + (d - f) / (p - f || 1) * (r - a - l), k = (d) => o - c - (d - m) / (v - m || 1) * (o - s - c), gt = t.map((d) => `${x(d.outside)},${k(d.supply)}`).join(" ");
-    return h`<section class="curve-panel"><div class="section-title"><div><b>Krzywa grzewcza</b><span>Punkty odczytane z encji Neoheat</span></div><span>Aktualnie: ${e.text} / ${i.text}</span></div>${t.length >= 2 ? g`<svg class="curve-chart" viewBox="0 0 ${r} ${o}" aria-label="Wykres krzywej grzewczej"><line class="axis" x1=${a} y1=${o - c} x2=${r - l} y2=${o - c}></line><line class="axis" x1=${a} y1=${s} x2=${a} y2=${o - c}></line>${[0, 0.25, 0.5, 0.75, 1].map((d) => {
+    const t = [...this.config.heating_curve?.points ?? []].map((d) => ({ ...d, outside: d.outside_entity ? this.val(d.outside_entity).value : d.outside, supply: d.entity ? this.val(d.entity).value : void 0 })).filter((d) => Number.isFinite(d.outside) && Number.isFinite(d.supply)).sort((d, w) => d.outside - w.outside), e = this.val(this.e.outside), i = this.val(this.e.pump_supply), r = 920, o = 420, a = 76, l = 32, s = 38, c = 62, f = Math.min(-20, ...t.map((d) => d.outside), e.value ?? 20), p = Math.max(20, ...t.map((d) => d.outside), e.value ?? -20), m = Math.min(15, ...t.map((d) => d.supply), i.value ?? 55), v = Math.max(55, ...t.map((d) => d.supply), i.value ?? 15), g = (d) => a + (d - f) / (p - f || 1) * (r - a - l), k = (d) => o - c - (d - m) / (v - m || 1) * (o - s - c), xt = t.map((d) => `${g(d.outside)},${k(d.supply)}`).join(" ");
+    return h`<section class="curve-panel"><div class="section-title"><div><b>Krzywa grzewcza</b><span>Punkty odczytane z encji Neoheat</span></div><span>Aktualnie: ${e.text} / ${i.text}</span></div>${t.length >= 2 ? x`<svg class="curve-chart" viewBox="0 0 ${r} ${o}" aria-label="Wykres krzywej grzewczej"><line class="axis" x1=${a} y1=${o - c} x2=${r - l} y2=${o - c}></line><line class="axis" x1=${a} y1=${s} x2=${a} y2=${o - c}></line>${[0, 0.25, 0.5, 0.75, 1].map((d) => {
       const w = s + d * (o - s - c), L = v - d * (v - m);
-      return g`<g><line class="grid" x1=${a} y1=${w} x2=${r - l} y2=${w}></line><text class="axis-label" x=${a - 12} y=${w + 5}>${L.toFixed(0)}°</text></g>`;
+      return x`<g><line class="grid" x1=${a} y1=${w} x2=${r - l} y2=${w}></line><text class="axis-label" x=${a - 12} y=${w + 5}>${L.toFixed(0)}°</text></g>`;
     })}${[0, 0.25, 0.5, 0.75, 1].map((d) => {
       const w = a + d * (r - a - l), L = f + d * (p - f);
-      return g`<text class="axis-label" x=${w} y=${o - 28}>${L.toFixed(0)}°</text>`;
-    })}<polyline class="curve-line" points=${gt}></polyline>${t.map((d) => g`<g><circle class="curve-point" cx=${x(d.outside)} cy=${k(d.supply)} r="7" @click=${() => this.moreInfo(d.entity)}></circle><text class="point-label" x=${x(d.outside)} y=${k(d.supply) - 14}>${d.supply}°</text></g>`)}${e.value !== void 0 && i.value !== void 0 ? g`<g class="current-guides"><line class="current-guide" x1=${x(e.value)} y1=${s} x2=${x(e.value)} y2=${o - c}></line><line class="current-guide" x1=${a} y1=${k(i.value)} x2=${r - l} y2=${k(i.value)}></line><text class="current-guide-label" x=${x(e.value)} y=${s - 10}>${e.text}</text><text class="current-guide-label" x=${r - l - 4} y=${k(i.value) - 8}>${i.text}</text><circle class="current-point" cx=${x(e.value)} cy=${k(i.value)} r="8" @click=${() => this.moreInfo(this.e.pump_supply)}></circle></g>` : u}<text class="axis-title" x=${r / 2} y=${o - 4}>Na zewnątrz</text><text class="axis-title" transform="translate(18 ${o / 2}) rotate(-90)">Zasilanie CO</text></svg>` : h`<div class="curve-empty">Przypisz co najmniej dwie encje Neoheat do punktów krzywej w edytorze karty.</div>`}</section>`;
+      return x`<text class="axis-label" x=${w} y=${o - 28}>${L.toFixed(0)}°</text>`;
+    })}<polyline class="curve-line" points=${xt}></polyline>${t.map((d) => x`<g><circle class="curve-point" cx=${g(d.outside)} cy=${k(d.supply)} r="7" @click=${() => this.moreInfo(d.entity)}></circle><text class="point-label" x=${g(d.outside)} y=${k(d.supply) - 14}>${d.supply}°</text></g>`)}${e.value !== void 0 && i.value !== void 0 ? x`<g class="current-guides"><line class="current-guide" x1=${g(e.value)} y1=${s} x2=${g(e.value)} y2=${o - c}></line><line class="current-guide" x1=${a} y1=${k(i.value)} x2=${r - l} y2=${k(i.value)}></line><text class="current-guide-label" x=${g(e.value)} y=${s - 10}>${e.text}</text><text class="current-guide-label" x=${r - l - 4} y=${k(i.value) - 8}>${i.text}</text><circle class="current-point" cx=${g(e.value)} cy=${k(i.value)} r="8" @click=${() => this.moreInfo(this.e.pump_supply)}></circle></g>` : u}<text class="axis-title" x=${r / 2} y=${o - 4}>Na zewnątrz</text><text class="axis-title" transform="translate(18 ${o / 2}) rotate(-90)">Zasilanie CO</text></svg>` : h`<div class="curve-empty">Przypisz co najmniej dwie encje Neoheat do punktów krzywej w edytorze karty.</div>`}</section>`;
   }
   viewSwitch() {
     return h`<footer><div class="view-switch"><button class=${this.displayMode === "home" ? "active" : ""} @click=${() => this.displayMode = "home"}>Dom + CO</button><button class=${this.displayMode === "heating" ? "active" : ""} @click=${() => this.displayMode = "heating"}>Pełny układ CO</button><button class=${this.displayMode === "curve" ? "active" : ""} @click=${() => this.displayMode = "curve"}>Krzywa grzewcza</button><button class=${this.displayMode === "stats" ? "active" : ""} @click=${() => this.displayMode = "stats"}>Statystyki</button></div><small>Podgląd temperatur · rzut poglądowy, bez skali</small></footer>`;
