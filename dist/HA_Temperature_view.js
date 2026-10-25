@@ -1,15 +1,15 @@
-const N = globalThis, K = N.ShadowRoot && (N.ShadyCSS === void 0 || N.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, Z = /* @__PURE__ */ Symbol(), J = /* @__PURE__ */ new WeakMap();
-let ct = class {
+const U = globalThis, Z = U.ShadowRoot && (U.ShadyCSS === void 0 || U.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, G = /* @__PURE__ */ Symbol(), X = /* @__PURE__ */ new WeakMap();
+let ht = class {
   constructor(t, e, i) {
-    if (this._$cssResult$ = !0, i !== Z) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
+    if (this._$cssResult$ = !0, i !== G) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = t, this.t = e;
   }
   get styleSheet() {
     let t = this.o;
     const e = this.t;
-    if (K && t === void 0) {
+    if (Z && t === void 0) {
       const i = e !== void 0 && e.length === 1;
-      i && (t = J.get(e)), t === void 0 && ((this.o = t = new CSSStyleSheet()).replaceSync(this.cssText), i && J.set(e, t));
+      i && (t = X.get(e)), t === void 0 && ((this.o = t = new CSSStyleSheet()).replaceSync(this.cssText), i && X.set(e, t));
     }
     return t;
   }
@@ -17,25 +17,25 @@ let ct = class {
     return this.cssText;
   }
 };
-const yt = (s) => new ct(typeof s == "string" ? s : s + "", void 0, Z), ht = (s, ...t) => {
+const yt = (s) => new ht(typeof s == "string" ? s : s + "", void 0, G), pt = (s, ...t) => {
   const e = s.length === 1 ? s[0] : t.reduce((i, r, o) => i + ((a) => {
     if (a._$cssResult$ === !0) return a.cssText;
     if (typeof a == "number") return a;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + a + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(r) + s[o + 1], s[0]);
-  return new ct(e, s, Z);
+  return new ht(e, s, G);
 }, kt = (s, t) => {
-  if (K) s.adoptedStyleSheets = t.map((e) => e instanceof CSSStyleSheet ? e : e.styleSheet);
+  if (Z) s.adoptedStyleSheets = t.map((e) => e instanceof CSSStyleSheet ? e : e.styleSheet);
   else for (const e of t) {
-    const i = document.createElement("style"), r = N.litNonce;
+    const i = document.createElement("style"), r = U.litNonce;
     r !== void 0 && i.setAttribute("nonce", r), i.textContent = e.cssText, s.appendChild(i);
   }
-}, X = K ? (s) => s : (s) => s instanceof CSSStyleSheet ? ((t) => {
+}, Q = Z ? (s) => s : (s) => s instanceof CSSStyleSheet ? ((t) => {
   let e = "";
   for (const i of t.cssRules) e += i.cssText;
   return yt(e);
 })(s) : s;
-const { is: wt, defineProperty: $t, getOwnPropertyDescriptor: bt, getOwnPropertyNames: _t, getOwnPropertySymbols: zt, getPrototypeOf: At } = Object, I = globalThis, Q = I.trustedTypes, Mt = Q ? Q.emptyScript : "", Ct = I.reactiveElementPolyfillSupport, P = (s, t) => s, B = { toAttribute(s, t) {
+const { is: wt, defineProperty: $t, getOwnPropertyDescriptor: bt, getOwnPropertyNames: _t, getOwnPropertySymbols: zt, getPrototypeOf: At } = Object, V = globalThis, tt = V.trustedTypes, Mt = tt ? tt.emptyScript : "", Ct = V.reactiveElementPolyfillSupport, j = (s, t) => s, W = { toAttribute(s, t) {
   switch (t) {
     case Boolean:
       s = s ? Mt : null;
@@ -63,16 +63,16 @@ const { is: wt, defineProperty: $t, getOwnPropertyDescriptor: bt, getOwnProperty
       }
   }
   return e;
-} }, pt = (s, t) => !wt(s, t), tt = { attribute: !0, type: String, converter: B, reflect: !1, useDefault: !1, hasChanged: pt };
-Symbol.metadata ??= /* @__PURE__ */ Symbol("metadata"), I.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-let A = class extends HTMLElement {
+} }, ut = (s, t) => !wt(s, t), et = { attribute: !0, type: String, converter: W, reflect: !1, useDefault: !1, hasChanged: ut };
+Symbol.metadata ??= /* @__PURE__ */ Symbol("metadata"), V.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+let M = class extends HTMLElement {
   static addInitializer(t) {
     this._$Ei(), (this.l ??= []).push(t);
   }
   static get observedAttributes() {
     return this.finalize(), this._$Eh && [...this._$Eh.keys()];
   }
-  static createProperty(t, e = tt) {
+  static createProperty(t, e = et) {
     if (e.state && (e.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(t) && ((e = Object.create(e)).wrapped = !0), this.elementProperties.set(t, e), !e.noAccessor) {
       const i = /* @__PURE__ */ Symbol(), r = this.getPropertyDescriptor(t, i, e);
       r !== void 0 && $t(this.prototype, t, r);
@@ -90,16 +90,16 @@ let A = class extends HTMLElement {
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(t) {
-    return this.elementProperties.get(t) ?? tt;
+    return this.elementProperties.get(t) ?? et;
   }
   static _$Ei() {
-    if (this.hasOwnProperty(P("elementProperties"))) return;
+    if (this.hasOwnProperty(j("elementProperties"))) return;
     const t = At(this);
     t.finalize(), t.l !== void 0 && (this.l = [...t.l]), this.elementProperties = new Map(t.elementProperties);
   }
   static finalize() {
-    if (this.hasOwnProperty(P("finalized"))) return;
-    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(P("properties"))) {
+    if (this.hasOwnProperty(j("finalized"))) return;
+    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(j("properties"))) {
       const e = this.properties, i = [..._t(e), ...zt(e)];
       for (const r of i) this.createProperty(r, e[r]);
     }
@@ -119,8 +119,8 @@ let A = class extends HTMLElement {
     const e = [];
     if (Array.isArray(t)) {
       const i = new Set(t.flat(1 / 0).reverse());
-      for (const r of i) e.unshift(X(r));
-    } else t !== void 0 && e.push(X(t));
+      for (const r of i) e.unshift(Q(r));
+    } else t !== void 0 && e.push(Q(t));
     return e;
   }
   static _$Eu(t, e) {
@@ -162,14 +162,14 @@ let A = class extends HTMLElement {
   _$ET(t, e) {
     const i = this.constructor.elementProperties.get(t), r = this.constructor._$Eu(t, i);
     if (r !== void 0 && i.reflect === !0) {
-      const o = (i.converter?.toAttribute !== void 0 ? i.converter : B).toAttribute(e, i.type);
+      const o = (i.converter?.toAttribute !== void 0 ? i.converter : W).toAttribute(e, i.type);
       this._$Em = t, o == null ? this.removeAttribute(r) : this.setAttribute(r, o), this._$Em = null;
     }
   }
   _$AK(t, e) {
     const i = this.constructor, r = i._$Eh.get(t);
     if (r !== void 0 && this._$Em !== r) {
-      const o = i.getPropertyOptions(r), a = typeof o.converter == "function" ? { fromAttribute: o.converter } : o.converter?.fromAttribute !== void 0 ? o.converter : B;
+      const o = i.getPropertyOptions(r), a = typeof o.converter == "function" ? { fromAttribute: o.converter } : o.converter?.fromAttribute !== void 0 ? o.converter : W;
       this._$Em = r;
       const l = a.fromAttribute(e, o.type);
       this[r] = l ?? this._$Ej?.get(r) ?? l, this._$Em = null;
@@ -178,7 +178,7 @@ let A = class extends HTMLElement {
   requestUpdate(t, e, i, r = !1, o) {
     if (t !== void 0) {
       const a = this.constructor;
-      if (r === !1 && (o = this[t]), i ??= a.getPropertyOptions(t), !((i.hasChanged ?? pt)(o, e) || i.useDefault && i.reflect && o === this._$Ej?.get(t) && !this.hasAttribute(a._$Eu(t, i)))) return;
+      if (r === !1 && (o = this[t]), i ??= a.getPropertyOptions(t), !((i.hasChanged ?? ut)(o, e) || i.useDefault && i.reflect && o === this._$Ej?.get(t) && !this.hasAttribute(a._$Eu(t, i)))) return;
       this.C(t, e, i);
     }
     this.isUpdatePending === !1 && (this._$ES = this._$EP());
@@ -246,54 +246,54 @@ let A = class extends HTMLElement {
   firstUpdated(t) {
   }
 };
-A.elementStyles = [], A.shadowRootOptions = { mode: "open" }, A[P("elementProperties")] = /* @__PURE__ */ new Map(), A[P("finalized")] = /* @__PURE__ */ new Map(), Ct?.({ ReactiveElement: A }), (I.reactiveElementVersions ??= []).push("2.1.2");
-const G = globalThis, et = (s) => s, T = G.trustedTypes, it = T ? T.createPolicy("lit-html", { createHTML: (s) => s }) : void 0, ut = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, ft = "?" + y, St = `<${ft}>`, _ = document, E = () => _.createComment(""), j = (s) => s === null || typeof s != "object" && typeof s != "function", q = Array.isArray, Pt = (s) => q(s) || typeof s?.[Symbol.iterator] == "function", L = `[ 	
-\f\r]`, S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, rt = /-->/g, ot = />/g, $ = RegExp(`>|${L}(?:([^\\s"'>=/]+)(${L}*=${L}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), at = /'/g, st = /"/g, mt = /^(?:script|style|textarea|title)$/i, vt = (s) => (t, ...e) => ({ _$litType$: s, strings: t, values: e }), p = vt(1), x = vt(2), z = /* @__PURE__ */ Symbol.for("lit-noChange"), f = /* @__PURE__ */ Symbol.for("lit-nothing"), nt = /* @__PURE__ */ new WeakMap(), b = _.createTreeWalker(_, 129);
-function gt(s, t) {
-  if (!q(s) || !s.hasOwnProperty("raw")) throw Error("invalid template strings array");
-  return it !== void 0 ? it.createHTML(t) : t;
+M.elementStyles = [], M.shadowRootOptions = { mode: "open" }, M[j("elementProperties")] = /* @__PURE__ */ new Map(), M[j("finalized")] = /* @__PURE__ */ new Map(), Ct?.({ ReactiveElement: M }), (V.reactiveElementVersions ??= []).push("2.1.2");
+const q = globalThis, it = (s) => s, I = q.trustedTypes, rt = I ? I.createPolicy("lit-html", { createHTML: (s) => s }) : void 0, ft = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, mt = "?" + w, St = `<${mt}>`, _ = document, H = () => _.createComment(""), O = (s) => s === null || typeof s != "object" && typeof s != "function", J = Array.isArray, Pt = (s) => J(s) || typeof s?.[Symbol.iterator] == "function", B = `[ 	
+\f\r]`, E = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ot = /-->/g, at = />/g, $ = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), st = /'/g, nt = /"/g, vt = /^(?:script|style|textarea|title)$/i, gt = (s) => (t, ...e) => ({ _$litType$: s, strings: t, values: e }), p = gt(1), y = gt(2), z = /* @__PURE__ */ Symbol.for("lit-noChange"), f = /* @__PURE__ */ Symbol.for("lit-nothing"), lt = /* @__PURE__ */ new WeakMap(), b = _.createTreeWalker(_, 129);
+function xt(s, t) {
+  if (!J(s) || !s.hasOwnProperty("raw")) throw Error("invalid template strings array");
+  return rt !== void 0 ? rt.createHTML(t) : t;
 }
 const Et = (s, t) => {
   const e = s.length - 1, i = [];
-  let r, o = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", a = S;
+  let r, o = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", a = E;
   for (let l = 0; l < e; l++) {
     const n = s[l];
-    let c, m, u = -1, g = 0;
-    for (; g < n.length && (a.lastIndex = g, m = a.exec(n), m !== null); ) g = a.lastIndex, a === S ? m[1] === "!--" ? a = rt : m[1] !== void 0 ? a = ot : m[2] !== void 0 ? (mt.test(m[2]) && (r = RegExp("</" + m[2], "g")), a = $) : m[3] !== void 0 && (a = $) : a === $ ? m[0] === ">" ? (a = r ?? S, u = -1) : m[1] === void 0 ? u = -2 : (u = a.lastIndex - m[2].length, c = m[1], a = m[3] === void 0 ? $ : m[3] === '"' ? st : at) : a === st || a === at ? a = $ : a === rt || a === ot ? a = S : (a = $, r = void 0);
-    const h = a === $ && s[l + 1].startsWith("/>") ? " " : "";
-    o += a === S ? n + St : u >= 0 ? (i.push(c), n.slice(0, u) + ut + n.slice(u) + y + h) : n + y + (u === -2 ? l : h);
+    let c, m, u = -1, v = 0;
+    for (; v < n.length && (a.lastIndex = v, m = a.exec(n), m !== null); ) v = a.lastIndex, a === E ? m[1] === "!--" ? a = ot : m[1] !== void 0 ? a = at : m[2] !== void 0 ? (vt.test(m[2]) && (r = RegExp("</" + m[2], "g")), a = $) : m[3] !== void 0 && (a = $) : a === $ ? m[0] === ">" ? (a = r ?? E, u = -1) : m[1] === void 0 ? u = -2 : (u = a.lastIndex - m[2].length, c = m[1], a = m[3] === void 0 ? $ : m[3] === '"' ? nt : st) : a === nt || a === st ? a = $ : a === ot || a === at ? a = E : (a = $, r = void 0);
+    const g = a === $ && s[l + 1].startsWith("/>") ? " " : "";
+    o += a === E ? n + St : u >= 0 ? (i.push(c), n.slice(0, u) + ft + n.slice(u) + w + g) : n + w + (u === -2 ? l : g);
   }
-  return [gt(s, o + (s[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
+  return [xt(s, o + (s[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
 };
-class H {
+class R {
   constructor({ strings: t, _$litType$: e }, i) {
     let r;
     this.parts = [];
     let o = 0, a = 0;
     const l = t.length - 1, n = this.parts, [c, m] = Et(t, e);
-    if (this.el = H.createElement(c, i), b.currentNode = this.el.content, e === 2 || e === 3) {
+    if (this.el = R.createElement(c, i), b.currentNode = this.el.content, e === 2 || e === 3) {
       const u = this.el.content.firstChild;
       u.replaceWith(...u.childNodes);
     }
     for (; (r = b.nextNode()) !== null && n.length < l; ) {
       if (r.nodeType === 1) {
-        if (r.hasAttributes()) for (const u of r.getAttributeNames()) if (u.endsWith(ut)) {
-          const g = m[a++], h = r.getAttribute(u).split(y), v = /([.?@])?(.*)/.exec(g);
-          n.push({ type: 1, index: o, name: v[2], strings: h, ctor: v[1] === "." ? Ht : v[1] === "?" ? Ot : v[1] === "@" ? Rt : D }), r.removeAttribute(u);
-        } else u.startsWith(y) && (n.push({ type: 6, index: o }), r.removeAttribute(u));
-        if (mt.test(r.tagName)) {
-          const u = r.textContent.split(y), g = u.length - 1;
-          if (g > 0) {
-            r.textContent = T ? T.emptyScript : "";
-            for (let h = 0; h < g; h++) r.append(u[h], E()), b.nextNode(), n.push({ type: 2, index: ++o });
-            r.append(u[g], E());
+        if (r.hasAttributes()) for (const u of r.getAttributeNames()) if (u.endsWith(ft)) {
+          const v = m[a++], g = r.getAttribute(u).split(w), h = /([.?@])?(.*)/.exec(v);
+          n.push({ type: 1, index: o, name: h[2], strings: g, ctor: h[1] === "." ? Ht : h[1] === "?" ? Ot : h[1] === "@" ? Rt : L }), r.removeAttribute(u);
+        } else u.startsWith(w) && (n.push({ type: 6, index: o }), r.removeAttribute(u));
+        if (vt.test(r.tagName)) {
+          const u = r.textContent.split(w), v = u.length - 1;
+          if (v > 0) {
+            r.textContent = I ? I.emptyScript : "";
+            for (let g = 0; g < v; g++) r.append(u[g], H()), b.nextNode(), n.push({ type: 2, index: ++o });
+            r.append(u[v], H());
           }
         }
-      } else if (r.nodeType === 8) if (r.data === ft) n.push({ type: 2, index: o });
+      } else if (r.nodeType === 8) if (r.data === mt) n.push({ type: 2, index: o });
       else {
         let u = -1;
-        for (; (u = r.data.indexOf(y, u + 1)) !== -1; ) n.push({ type: 7, index: o }), u += y.length - 1;
+        for (; (u = r.data.indexOf(w, u + 1)) !== -1; ) n.push({ type: 7, index: o }), u += w.length - 1;
       }
       o++;
     }
@@ -303,11 +303,11 @@ class H {
     return i.innerHTML = t, i;
   }
 }
-function C(s, t, e = s, i) {
+function S(s, t, e = s, i) {
   if (t === z) return t;
   let r = i !== void 0 ? e._$Co?.[i] : e._$Cl;
-  const o = j(t) ? void 0 : t._$litDirective$;
-  return r?.constructor !== o && (r?._$AO?.(!1), o === void 0 ? r = void 0 : (r = new o(s), r._$AT(s, e, i)), i !== void 0 ? (e._$Co ??= [])[i] = r : e._$Cl = r), r !== void 0 && (t = C(s, r._$AS(s, t.values), r, i)), t;
+  const o = O(t) ? void 0 : t._$litDirective$;
+  return r?.constructor !== o && (r?._$AO?.(!1), o === void 0 ? r = void 0 : (r = new o(s), r._$AT(s, e, i)), i !== void 0 ? (e._$Co ??= [])[i] = r : e._$Cl = r), r !== void 0 && (t = S(s, r._$AS(s, t.values), r, i)), t;
 }
 class jt {
   constructor(t, e) {
@@ -326,7 +326,7 @@ class jt {
     for (; n !== void 0; ) {
       if (a === n.index) {
         let c;
-        n.type === 2 ? c = new O(o, o.nextSibling, this, t) : n.type === 1 ? c = new n.ctor(o, n.name, n.strings, this, t) : n.type === 6 && (c = new Nt(o, this, t)), this._$AV.push(c), n = i[++l];
+        n.type === 2 ? c = new T(o, o.nextSibling, this, t) : n.type === 1 ? c = new n.ctor(o, n.name, n.strings, this, t) : n.type === 6 && (c = new Tt(o, this, t)), this._$AV.push(c), n = i[++l];
       }
       a !== n?.index && (o = b.nextNode(), a++);
     }
@@ -337,7 +337,7 @@ class jt {
     for (const i of this._$AV) i !== void 0 && (i.strings !== void 0 ? (i._$AI(t, i, e), e += i.strings.length - 2) : i._$AI(t[e])), e++;
   }
 }
-class O {
+class T {
   get _$AU() {
     return this._$AM?._$AU ?? this._$Cv;
   }
@@ -356,7 +356,7 @@ class O {
     return this._$AB;
   }
   _$AI(t, e = this) {
-    t = C(this, t, e), j(t) ? t === f || t == null || t === "" ? (this._$AH !== f && this._$AR(), this._$AH = f) : t !== this._$AH && t !== z && this._(t) : t._$litType$ !== void 0 ? this.$(t) : t.nodeType !== void 0 ? this.T(t) : Pt(t) ? this.k(t) : this._(t);
+    t = S(this, t, e), O(t) ? t === f || t == null || t === "" ? (this._$AH !== f && this._$AR(), this._$AH = f) : t !== this._$AH && t !== z && this._(t) : t._$litType$ !== void 0 ? this.$(t) : t.nodeType !== void 0 ? this.T(t) : Pt(t) ? this.k(t) : this._(t);
   }
   O(t) {
     return this._$AA.parentNode.insertBefore(t, this._$AB);
@@ -365,10 +365,10 @@ class O {
     this._$AH !== t && (this._$AR(), this._$AH = this.O(t));
   }
   _(t) {
-    this._$AH !== f && j(this._$AH) ? this._$AA.nextSibling.data = t : this.T(_.createTextNode(t)), this._$AH = t;
+    this._$AH !== f && O(this._$AH) ? this._$AA.nextSibling.data = t : this.T(_.createTextNode(t)), this._$AH = t;
   }
   $(t) {
-    const { values: e, _$litType$: i } = t, r = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = H.createElement(gt(i.h, i.h[0]), this.options)), i);
+    const { values: e, _$litType$: i } = t, r = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = R.createElement(xt(i.h, i.h[0]), this.options)), i);
     if (this._$AH?._$AD === r) this._$AH.p(e);
     else {
       const o = new jt(r, this), a = o.u(this.options);
@@ -376,27 +376,27 @@ class O {
     }
   }
   _$AC(t) {
-    let e = nt.get(t.strings);
-    return e === void 0 && nt.set(t.strings, e = new H(t)), e;
+    let e = lt.get(t.strings);
+    return e === void 0 && lt.set(t.strings, e = new R(t)), e;
   }
   k(t) {
-    q(this._$AH) || (this._$AH = [], this._$AR());
+    J(this._$AH) || (this._$AH = [], this._$AR());
     const e = this._$AH;
     let i, r = 0;
-    for (const o of t) r === e.length ? e.push(i = new O(this.O(E()), this.O(E()), this, this.options)) : i = e[r], i._$AI(o), r++;
+    for (const o of t) r === e.length ? e.push(i = new T(this.O(H()), this.O(H()), this, this.options)) : i = e[r], i._$AI(o), r++;
     r < e.length && (this._$AR(i && i._$AB.nextSibling, r), e.length = r);
   }
   _$AR(t = this._$AA.nextSibling, e) {
     for (this._$AP?.(!1, !0, e); t !== this._$AB; ) {
-      const i = et(t).nextSibling;
-      et(t).remove(), t = i;
+      const i = it(t).nextSibling;
+      it(t).remove(), t = i;
     }
   }
   setConnected(t) {
     this._$AM === void 0 && (this._$Cv = t, this._$AP?.(t));
   }
 }
-class D {
+class L {
   get tagName() {
     return this.element.tagName;
   }
@@ -409,11 +409,11 @@ class D {
   _$AI(t, e = this, i, r) {
     const o = this.strings;
     let a = !1;
-    if (o === void 0) t = C(this, t, e, 0), a = !j(t) || t !== this._$AH && t !== z, a && (this._$AH = t);
+    if (o === void 0) t = S(this, t, e, 0), a = !O(t) || t !== this._$AH && t !== z, a && (this._$AH = t);
     else {
       const l = t;
       let n, c;
-      for (t = o[0], n = 0; n < o.length - 1; n++) c = C(this, l[i + n], e, n), c === z && (c = this._$AH[n]), a ||= !j(c) || c !== this._$AH[n], c === f ? t = f : t !== f && (t += (c ?? "") + o[n + 1]), this._$AH[n] = c;
+      for (t = o[0], n = 0; n < o.length - 1; n++) c = S(this, l[i + n], e, n), c === z && (c = this._$AH[n]), a ||= !O(c) || c !== this._$AH[n], c === f ? t = f : t !== f && (t += (c ?? "") + o[n + 1]), this._$AH[n] = c;
     }
     a && !r && this.j(t);
   }
@@ -421,7 +421,7 @@ class D {
     t === f ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, t ?? "");
   }
 }
-class Ht extends D {
+class Ht extends L {
   constructor() {
     super(...arguments), this.type = 3;
   }
@@ -429,7 +429,7 @@ class Ht extends D {
     this.element[this.name] = t === f ? void 0 : t;
   }
 }
-class Ot extends D {
+class Ot extends L {
   constructor() {
     super(...arguments), this.type = 4;
   }
@@ -437,12 +437,12 @@ class Ot extends D {
     this.element.toggleAttribute(this.name, !!t && t !== f);
   }
 }
-class Rt extends D {
+class Rt extends L {
   constructor(t, e, i, r, o) {
     super(t, e, i, r, o), this.type = 5;
   }
   _$AI(t, e = this) {
-    if ((t = C(this, t, e, 0) ?? f) === z) return;
+    if ((t = S(this, t, e, 0) ?? f) === z) return;
     const i = this._$AH, r = t === f && i !== f || t.capture !== i.capture || t.once !== i.once || t.passive !== i.passive, o = t !== f && (i === f || r);
     r && this.element.removeEventListener(this.name, this, i), o && this.element.addEventListener(this.name, this, t), this._$AH = t;
   }
@@ -450,7 +450,7 @@ class Rt extends D {
     typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, t) : this._$AH.handleEvent(t);
   }
 }
-class Nt {
+class Tt {
   constructor(t, e, i) {
     this.element = t, this.type = 6, this._$AN = void 0, this._$AM = e, this.options = i;
   }
@@ -458,22 +458,22 @@ class Nt {
     return this._$AM._$AU;
   }
   _$AI(t) {
-    C(this, t);
+    S(this, t);
   }
 }
-const Tt = G.litHtmlPolyfillSupport;
-Tt?.(H, O), (G.litHtmlVersions ??= []).push("3.3.3");
+const Nt = q.litHtmlPolyfillSupport;
+Nt?.(R, T), (q.litHtmlVersions ??= []).push("3.3.3");
 const Ut = (s, t, e) => {
   const i = e?.renderBefore ?? t;
   let r = i._$litPart$;
   if (r === void 0) {
     const o = e?.renderBefore ?? null;
-    i._$litPart$ = r = new O(t.insertBefore(E(), o), o, void 0, e ?? {});
+    i._$litPart$ = r = new T(t.insertBefore(H(), o), o, void 0, e ?? {});
   }
   return r._$AI(s), r;
 };
 const Y = globalThis;
-let M = class extends A {
+let C = class extends M {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -495,9 +495,9 @@ let M = class extends A {
     return z;
   }
 };
-M._$litElement$ = !0, M.finalized = !0, Y.litElementHydrateSupport?.({ LitElement: M });
+C._$litElement$ = !0, C.finalized = !0, Y.litElementHydrateSupport?.({ LitElement: C });
 const It = Y.litElementPolyfillSupport;
-It?.({ LitElement: M });
+It?.({ LitElement: C });
 (Y.litElementVersions ??= []).push("4.2.2");
 const Dt = { CHILD: 2 }, Vt = (s) => (...t) => ({ _$litDirective$: s, values: t });
 class Lt {
@@ -516,7 +516,7 @@ class Lt {
     return this.render(...e);
   }
 }
-class W extends Lt {
+class F extends Lt {
   constructor(t) {
     if (super(t), this.it = f, t.type !== Dt.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
   }
@@ -530,11 +530,11 @@ class W extends Lt {
     return e.raw = e, this._t = { _$litType$: this.constructor.resultType, strings: e, values: [] };
   }
 }
-W.directiveName = "unsafeHTML", W.resultType = 1;
-class F extends W {
+F.directiveName = "unsafeHTML", F.resultType = 1;
+class K extends F {
 }
-F.directiveName = "unsafeSVG", F.resultType = 2;
-const lt = Vt(F), Bt = '<svg xmlns="http://www.w3.org/2000/svg" width="760" height="600" viewBox="0 0 760 600" role="img" aria-label="rzut-parter" font-family="DejaVu Sans, Arial, sans-serif"><g id="room-parter-biuro"><rect x="20" y="20" width="218" height="240" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="129.0" y="120.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Biuro</text><text id="value-parter-biuro" x="129.0" y="175.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-schody"><rect x="238" y="20" width="180" height="240" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><path d="M252 40H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 60H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 80H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 100H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 120H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 140H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 160H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 180H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 200H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 220H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 240H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="286.0" y="126.0" width="84" height="28" rx="4" fill="var(--dh-panel, #ffffff)"/><text x="328.0" y="146.0" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Schody</text></g><g id="room-parter-salon"><rect x="418" y="20" width="322" height="420" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="579.0" y="210.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Salon</text><text id="value-parter-salon" x="579.0" y="265.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-hall"><rect x="20" y="260" width="218" height="180" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="129.0" y="330.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Hall</text><text id="value-parter-hall" x="129.0" y="385.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-korytarz-1"><rect x="238" y="260" width="180" height="180" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="328.0" y="330.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Korytarz I</text><text id="value-parter-korytarz-1" x="328.0" y="385.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-kuchnia"><rect x="20" y="440" width="720" height="140" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="380.0" y="490.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Kuchnia</text><text id="value-parter-kuchnia" x="380.0" y="545.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g></svg>', Wt = '<svg xmlns="http://www.w3.org/2000/svg" width="760" height="600" viewBox="0 0 760 600" role="img" aria-label="rzut-pietro" font-family="DejaVu Sans, Arial, sans-serif"><g id="room-pietro-lazienka"><rect x="20" y="20" width="245" height="420" rx="0" fill="var(--dh-warm, #f3e9dc)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="142.5" y="210.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Łazienka</text><text id="value-pietro-lazienka" x="142.5" y="265.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-schody"><rect x="265" y="20" width="170" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><path d="M279 40H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 60H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 80H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 100H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 120H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 140H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 160H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 180H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 200H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="308.0" y="111.0" width="84" height="28" rx="4" fill="var(--dh-panel, #ffffff)"/><text x="350.0" y="131.0" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Schody</text></g><g id="room-pietro-sypialnia-1"><rect x="435" y="20" width="305" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="587.5" y="105.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Sypialnia I</text><text id="value-pietro-sypialnia-1" x="587.5" y="160.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-korytarz-2"><rect x="265" y="230" width="170" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="350.0" y="315.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Korytarz II</text><text id="value-pietro-korytarz-2" x="350.0" y="370.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-sypialnia-2"><rect x="435" y="230" width="305" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="587.5" y="315.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Sypialnia II</text><text id="value-pietro-sypialnia-2" x="587.5" y="370.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-sypialnia-3"><rect x="20" y="440" width="490" height="140" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="265.0" y="490.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Sypialnia III</text><text id="value-pietro-sypialnia-3" x="265.0" y="545.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-garderoba"><rect x="510" y="440" width="230" height="140" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="625.0" y="490.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Garderoba</text><text id="value-pietro-garderoba" x="625.0" y="545.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g></svg>', Ft = '<svg xmlns="http://www.w3.org/2000/svg" width="760" height="600" viewBox="0 0 760 600" role="img" aria-label="rzut-piwnica" font-family="DejaVu Sans, Arial, sans-serif"><g id="room-piwnica-lazienka"><rect x="20" y="20" width="170" height="200" rx="0" fill="var(--dh-warm, #f3e9dc)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="105.0" y="100.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Łazienka</text><text id="value-piwnica-lazienka" x="105.0" y="155.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-pom-gosp-1"><rect x="190" y="20" width="100" height="130" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="240.0" y="65.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Pom.</text><text x="240.0" y="87.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">gosp.*</text><text id="value-piwnica-pom-gosp-1" x="240.0" y="120.0" fill="var(--dh-ink, #163344)" font-size="27" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-schody"><rect x="290" y="20" width="170" height="130" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><path d="M304 40H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 60H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 80H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 100H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 120H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="333.0" y="71.0" width="84" height="28" rx="4" fill="var(--dh-panel, #ffffff)"/><text x="375.0" y="91.0" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Schody</text></g><g id="room-piwnica-silownia"><rect x="460" y="20" width="280" height="400" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="600.0" y="200.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Siłownia</text><text id="value-piwnica-silownia" x="600.0" y="255.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-magazyn"><rect x="20" y="220" width="100" height="200" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="70.0" y="300.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Magazyn*</text><text id="value-piwnica-magazyn" x="70.0" y="355.0" fill="var(--dh-ink, #163344)" font-size="27" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-pom-gosp-2"><rect x="120" y="220" width="170" height="200" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="205.0" y="300.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Pom. gosp.*</text><text id="value-piwnica-pom-gosp-2" x="205.0" y="355.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-korytarz"><rect x="290" y="150" width="170" height="270" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="375.0" y="265.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Korytarz</text><text id="value-piwnica-korytarz" x="375.0" y="320.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-garaz"><rect x="20" y="420" width="720" height="160" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="380.0" y="480.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Garaż</text><text id="value-piwnica-garaz" x="380.0" y="535.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g></svg>', Kt = '<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="660" viewBox="0 0 1300 660" role="img" aria-label="uklad-co-poziomy" font-family="DejaVu Sans, Arial, sans-serif"><path d="M180 210H420" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M420 350H180" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M560 210H1190" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M560 350H1190" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M810 210V246" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M810 315V350" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1000 210V246" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1000 315V350" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1190 210V246" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1190 315V350" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M165 365V425H385V475" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M420 475V450H140V365" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="60" y="175" width="120" height="190" rx="12" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="69" y="185" width="102" height="170" rx="8" fill="var(--dh-panel, #ffffff)"/><circle cx="120.0" cy="228.2" r="38.4" fill="var(--dh-fan, #365365)"/><circle cx="120.0" cy="228.2" r="32.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="228.2" r="25.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="228.2" r="18.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><path d="M81.6 228.2L158.4 228.2" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M120.0 189.79999999999998L120.0 266.59999999999997" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 201.32L146.88 255.07999999999998" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 255.07999999999998L146.88 201.32" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120.0" cy="228.2" r="6" fill="var(--dh-metal, #dbe5ec)"/><circle cx="120.0" cy="311.79999999999995" r="38.4" fill="var(--dh-fan, #365365)"/><circle cx="120.0" cy="311.79999999999995" r="32.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="311.79999999999995" r="25.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="311.79999999999995" r="18.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><path d="M81.6 311.79999999999995L158.4 311.79999999999995" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M120.0 273.4L120.0 350.19999999999993" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 284.91999999999996L146.88 338.67999999999995" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 338.67999999999995L146.88 284.91999999999996" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120.0" cy="311.79999999999995" r="6" fill="var(--dh-metal, #dbe5ec)"/><text x="120" y="150" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pompa ciepła</text><rect x="420" y="165" width="140" height="230" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="430" y="183" width="120" height="194" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="490.0" y="145" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Bufor 1000 l</text><rect x="345" y="475" width="130" height="110" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="355" y="493" width="110" height="74" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="410.0" y="455" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">CWU</text><text x="290" y="171" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie PC</text><text id="value-pc-supply" x="290" y="203" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text x="290" y="318" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót PC</text><text id="value-pc-return" x="290" y="350" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-top" x="490" y="226" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-middle" x="490" y="291" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-bottom" x="490" y="356" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-cwu" x="410" y="540" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><rect x="735" y="246" width="150" height="69" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="810" y="285" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pion 1</text><text x="810" y="149" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-riser-1-supply" x="810" y="181" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="810" y="382" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-riser-1-return" x="810" y="414" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><rect x="925" y="246" width="150" height="69" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="1000" y="285" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pion 2</text><text x="1000" y="149" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-riser-2-supply" x="1000" y="181" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="1000" y="382" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-riser-2-return" x="1000" y="414" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><rect x="1115" y="246" width="150" height="69" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="1190" y="285" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pion 3</text><text x="1190" y="149" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-riser-3-supply" x="1190" y="181" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="1190" y="382" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-riser-3-return" x="1190" y="414" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="40" y="45" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="start">INSTALACJA CENTRALNEGO OGRZEWANIA</text><text x="40" y="630" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="start">Schemat funkcjonalny • przebieg gałęzi CWU do potwierdzenia na instalacji</text><path d="M760 560H795" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="810" y="567" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="start">Zasilanie</text><path d="M1010 560H1045" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="1060" y="567" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="start">Powrót</text></svg>', Zt = '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="790" viewBox="0 0 500 790" role="img" aria-label="uklad-co-kolumna" font-family="DejaVu Sans, Arial, sans-serif"><text x="30" y="40" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="start">UKŁAD CO</text><rect x="24" y="65" width="452" height="128" rx="18" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="48" y="99" fill="var(--dh-muted, #526c7e)" font-size="20" font-weight="400" text-anchor="start">Pompa ciepła</text><text x="135" y="132" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-pc-supply" x="135" y="164" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text x="365" y="132" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-pc-return" x="365" y="164" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><rect x="54" y="252" width="200" height="225" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="64" y="270" width="180" height="189" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="154.0" y="232" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Bufor 1000 l</text><rect x="306" y="290" width="140" height="150" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="316" y="308" width="120" height="114" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="376.0" y="270" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">CWU</text><text id="value-buffer-top" x="154" y="307" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-middle" x="154" y="375" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-bottom" x="154" y="440" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><text id="value-cwu" x="376" y="380" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><path d="M254 308H280V520H86H416" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M54 440H32V715H416" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 520V552" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 686V715" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="552" width="126" height="134" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="86" y="581" fill="var(--dh-ink, #163344)" font-size="18" font-weight="400" text-anchor="middle">Pion 1</text><text id="value-riser-1-supply" x="86" y="620" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text id="value-riser-1-return" x="86" y="662" fill="var(--dh-ink, #163344)" font-size="26" font-weight="400" text-anchor="middle">—°</text><path d="M251 520V552" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M251 686V715" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="188" y="552" width="126" height="134" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="251" y="581" fill="var(--dh-ink, #163344)" font-size="18" font-weight="400" text-anchor="middle">Pion 2</text><text id="value-riser-2-supply" x="251" y="620" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text id="value-riser-2-return" x="251" y="662" fill="var(--dh-ink, #163344)" font-size="26" font-weight="400" text-anchor="middle">—°</text><path d="M416 520V552" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M416 686V715" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="353" y="552" width="126" height="134" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="416" y="581" fill="var(--dh-ink, #163344)" font-size="18" font-weight="400" text-anchor="middle">Pion 3</text><text id="value-riser-3-supply" x="416" y="620" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text id="value-riser-3-return" x="416" y="662" fill="var(--dh-ink, #163344)" font-size="26" font-weight="400" text-anchor="middle">—°</text><text x="250" y="760" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Góra: zasilanie • dół: powrót</text></svg>', Gt = { ground: Bt, upper: Wt, basement: Ft }, qt = { horizontal: Kt, column: Zt }, U = {
+K.directiveName = "unsafeSVG", K.resultType = 2;
+const dt = Vt(K), Bt = '<svg xmlns="http://www.w3.org/2000/svg" width="760" height="600" viewBox="0 0 760 600" role="img" aria-label="rzut-parter" font-family="DejaVu Sans, Arial, sans-serif"><g id="room-parter-biuro"><rect x="20" y="20" width="218" height="240" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="129.0" y="120.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Biuro</text><text id="value-parter-biuro" x="129.0" y="175.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-schody"><rect x="238" y="20" width="180" height="240" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><path d="M252 40H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 60H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 80H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 100H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 120H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 140H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 160H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 180H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 200H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 220H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M252 240H404" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="286.0" y="126.0" width="84" height="28" rx="4" fill="var(--dh-panel, #ffffff)"/><text x="328.0" y="146.0" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Schody</text></g><g id="room-parter-salon"><rect x="418" y="20" width="322" height="420" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="579.0" y="210.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Salon</text><text id="value-parter-salon" x="579.0" y="265.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-hall"><rect x="20" y="260" width="218" height="180" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="129.0" y="330.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Hall</text><text id="value-parter-hall" x="129.0" y="385.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-korytarz-1"><rect x="238" y="260" width="180" height="180" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="328.0" y="330.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Korytarz I</text><text id="value-parter-korytarz-1" x="328.0" y="385.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-parter-kuchnia"><rect x="20" y="440" width="720" height="140" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="380.0" y="490.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Kuchnia</text><text id="value-parter-kuchnia" x="380.0" y="545.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g></svg>', Wt = '<svg xmlns="http://www.w3.org/2000/svg" width="760" height="600" viewBox="0 0 760 600" role="img" aria-label="rzut-pietro" font-family="DejaVu Sans, Arial, sans-serif"><g id="room-pietro-lazienka"><rect x="20" y="20" width="245" height="420" rx="0" fill="var(--dh-warm, #f3e9dc)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="142.5" y="210.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Łazienka</text><text id="value-pietro-lazienka" x="142.5" y="265.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-schody"><rect x="265" y="20" width="170" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><path d="M279 40H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 60H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 80H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 100H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 120H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 140H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 160H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 180H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M279 200H421" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="308.0" y="111.0" width="84" height="28" rx="4" fill="var(--dh-panel, #ffffff)"/><text x="350.0" y="131.0" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Schody</text></g><g id="room-pietro-sypialnia-1"><rect x="435" y="20" width="305" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="587.5" y="105.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Sypialnia I</text><text id="value-pietro-sypialnia-1" x="587.5" y="160.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-korytarz-2"><rect x="265" y="230" width="170" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="350.0" y="315.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Korytarz II</text><text id="value-pietro-korytarz-2" x="350.0" y="370.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-sypialnia-2"><rect x="435" y="230" width="305" height="210" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="587.5" y="315.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Sypialnia II</text><text id="value-pietro-sypialnia-2" x="587.5" y="370.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-sypialnia-3"><rect x="20" y="440" width="490" height="140" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="265.0" y="490.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Sypialnia III</text><text id="value-pietro-sypialnia-3" x="265.0" y="545.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-pietro-garderoba"><rect x="510" y="440" width="230" height="140" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="625.0" y="490.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Garderoba</text><text id="value-pietro-garderoba" x="625.0" y="545.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g></svg>', Ft = '<svg xmlns="http://www.w3.org/2000/svg" width="760" height="600" viewBox="0 0 760 600" role="img" aria-label="rzut-piwnica" font-family="DejaVu Sans, Arial, sans-serif"><g id="room-piwnica-lazienka"><rect x="20" y="20" width="170" height="200" rx="0" fill="var(--dh-warm, #f3e9dc)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="105.0" y="100.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Łazienka</text><text id="value-piwnica-lazienka" x="105.0" y="155.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-pom-gosp-1"><rect x="190" y="20" width="100" height="130" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="240.0" y="65.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Pom.</text><text x="240.0" y="87.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">gosp.*</text><text id="value-piwnica-pom-gosp-1" x="240.0" y="120.0" fill="var(--dh-ink, #163344)" font-size="27" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-schody"><rect x="290" y="20" width="170" height="130" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><path d="M304 40H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 60H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 80H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 100H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M304 120H446" fill="none" stroke="var(--dh-line, #c4d2dc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="333.0" y="71.0" width="84" height="28" rx="4" fill="var(--dh-panel, #ffffff)"/><text x="375.0" y="91.0" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Schody</text></g><g id="room-piwnica-silownia"><rect x="460" y="20" width="280" height="400" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="600.0" y="200.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Siłownia</text><text id="value-piwnica-silownia" x="600.0" y="255.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-magazyn"><rect x="20" y="220" width="100" height="200" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="70.0" y="300.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Magazyn*</text><text id="value-piwnica-magazyn" x="70.0" y="355.0" fill="var(--dh-ink, #163344)" font-size="27" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-pom-gosp-2"><rect x="120" y="220" width="170" height="200" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="205.0" y="300.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Pom. gosp.*</text><text id="value-piwnica-pom-gosp-2" x="205.0" y="355.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-korytarz"><rect x="290" y="150" width="170" height="270" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="375.0" y="265.0" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="middle">Korytarz</text><text id="value-piwnica-korytarz" x="375.0" y="320.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g><g id="room-piwnica-garaz"><rect x="20" y="420" width="720" height="160" rx="0" fill="var(--dh-room, #e8f0f3)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="380.0" y="480.0" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="middle">Garaż</text><text id="value-piwnica-garaz" x="380.0" y="535.0" fill="var(--dh-ink, #163344)" font-size="34" font-weight="400" text-anchor="middle">—°</text></g></svg>', Kt = '<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="660" viewBox="0 0 1300 660" role="img" aria-label="uklad-co-poziomy" font-family="DejaVu Sans, Arial, sans-serif"><path d="M180 210H420" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M420 350H180" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M560 210H1190" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M560 350H1190" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M810 210V246" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M810 315V350" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1000 210V246" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1000 315V350" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1190 210V246" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1190 315V350" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M165 365V425H385V475" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M420 475V450H140V365" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="60" y="175" width="120" height="190" rx="12" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="69" y="185" width="102" height="170" rx="8" fill="var(--dh-panel, #ffffff)"/><circle cx="120.0" cy="228.2" r="38.4" fill="var(--dh-fan, #365365)"/><circle cx="120.0" cy="228.2" r="32.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="228.2" r="25.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="228.2" r="18.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><path d="M81.6 228.2L158.4 228.2" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M120.0 189.79999999999998L120.0 266.59999999999997" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 201.32L146.88 255.07999999999998" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 255.07999999999998L146.88 201.32" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120.0" cy="228.2" r="6" fill="var(--dh-metal, #dbe5ec)"/><circle cx="120.0" cy="311.79999999999995" r="38.4" fill="var(--dh-fan, #365365)"/><circle cx="120.0" cy="311.79999999999995" r="32.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="311.79999999999995" r="25.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><circle cx="120.0" cy="311.79999999999995" r="18.4" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" fill="none"/><path d="M81.6 311.79999999999995L158.4 311.79999999999995" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M120.0 273.4L120.0 350.19999999999993" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 284.91999999999996L146.88 338.67999999999995" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M93.12 338.67999999999995L146.88 284.91999999999996" fill="none" stroke="var(--dh-metal, #dbe5ec)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120.0" cy="311.79999999999995" r="6" fill="var(--dh-metal, #dbe5ec)"/><text x="120" y="150" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pompa ciepła</text><rect x="420" y="165" width="140" height="230" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="430" y="183" width="120" height="194" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="490.0" y="145" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Bufor 1000 l</text><rect x="345" y="475" width="130" height="110" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="355" y="493" width="110" height="74" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="410.0" y="455" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">CWU</text><text x="290" y="171" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie PC</text><text id="value-pc-supply" x="290" y="203" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text x="290" y="318" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót PC</text><text id="value-pc-return" x="290" y="350" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-top" x="490" y="226" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-middle" x="490" y="291" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-bottom" x="490" y="356" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text id="value-cwu" x="410" y="540" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><rect x="735" y="246" width="150" height="69" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="810" y="285" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pion 1</text><text x="810" y="149" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-riser-1-supply" x="810" y="181" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="810" y="382" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-riser-1-return" x="810" y="414" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><rect x="925" y="246" width="150" height="69" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="1000" y="285" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pion 2</text><text x="1000" y="149" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-riser-2-supply" x="1000" y="181" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="1000" y="382" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-riser-2-return" x="1000" y="414" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><rect x="1115" y="246" width="150" height="69" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="1190" y="285" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Pion 3</text><text x="1190" y="149" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-riser-3-supply" x="1190" y="181" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="1190" y="382" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-riser-3-return" x="1190" y="414" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text x="40" y="45" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="start">INSTALACJA CENTRALNEGO OGRZEWANIA</text><text x="40" y="630" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="start">Schemat funkcjonalny • przebieg gałęzi CWU do potwierdzenia na instalacji</text><path d="M760 560H795" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="810" y="567" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="start">Zasilanie</text><path d="M1010 560H1045" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="1060" y="567" fill="var(--dh-muted, #526c7e)" font-size="18" font-weight="400" text-anchor="start">Powrót</text></svg>', Zt = '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="790" viewBox="0 0 500 790" role="img" aria-label="uklad-co-kolumna" font-family="DejaVu Sans, Arial, sans-serif"><text x="30" y="40" fill="var(--dh-muted, #526c7e)" font-size="22" font-weight="400" text-anchor="start">UKŁAD CO</text><rect x="24" y="65" width="452" height="128" rx="18" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="48" y="99" fill="var(--dh-muted, #526c7e)" font-size="20" font-weight="400" text-anchor="start">Pompa ciepła</text><text x="135" y="132" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Zasilanie</text><text id="value-pc-supply" x="135" y="164" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><text x="365" y="132" fill="var(--dh-muted, #526c7e)" font-size="15" font-weight="400" text-anchor="middle">Powrót</text><text id="value-pc-return" x="365" y="164" fill="var(--dh-ink, #163344)" font-size="28" font-weight="400" text-anchor="middle">—°</text><rect x="54" y="252" width="200" height="225" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="64" y="270" width="180" height="189" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="154.0" y="232" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">Bufor 1000 l</text><rect x="306" y="290" width="140" height="150" rx="32" fill="var(--dh-metal, #dbe5ec)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><rect x="316" y="308" width="120" height="114" rx="20" fill="var(--dh-room, #e8f0f3)"/><text x="376.0" y="270" fill="var(--dh-ink, #163344)" font-size="22" font-weight="400" text-anchor="middle">CWU</text><text id="value-buffer-top" x="154" y="307" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-middle" x="154" y="375" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><text id="value-buffer-bottom" x="154" y="440" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><text id="value-cwu" x="376" y="380" fill="var(--dh-ink, #163344)" font-size="32" font-weight="400" text-anchor="middle">—°</text><path d="M254 308H280V520H86H416" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M54 440H32V715H416" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 520V552" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 686V715" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="552" width="126" height="134" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="86" y="581" fill="var(--dh-ink, #163344)" font-size="18" font-weight="400" text-anchor="middle">Pion 1</text><text id="value-riser-1-supply" x="86" y="620" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text id="value-riser-1-return" x="86" y="662" fill="var(--dh-ink, #163344)" font-size="26" font-weight="400" text-anchor="middle">—°</text><path d="M251 520V552" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M251 686V715" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="188" y="552" width="126" height="134" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="251" y="581" fill="var(--dh-ink, #163344)" font-size="18" font-weight="400" text-anchor="middle">Pion 2</text><text id="value-riser-2-supply" x="251" y="620" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text id="value-riser-2-return" x="251" y="662" fill="var(--dh-ink, #163344)" font-size="26" font-weight="400" text-anchor="middle">—°</text><path d="M416 520V552" fill="none" stroke="var(--dh-hot, #cf652d)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M416 686V715" fill="none" stroke="var(--dh-cold, #218bad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="353" y="552" width="126" height="134" rx="12" fill="var(--dh-panel, #ffffff)" stroke="var(--dh-line, #c4d2dc)" stroke-width="3"/><text x="416" y="581" fill="var(--dh-ink, #163344)" font-size="18" font-weight="400" text-anchor="middle">Pion 3</text><text id="value-riser-3-supply" x="416" y="620" fill="var(--dh-ink, #163344)" font-size="30" font-weight="400" text-anchor="middle">—°</text><text id="value-riser-3-return" x="416" y="662" fill="var(--dh-ink, #163344)" font-size="26" font-weight="400" text-anchor="middle">—°</text><text x="250" y="760" fill="var(--dh-muted, #526c7e)" font-size="16" font-weight="400" text-anchor="middle">Góra: zasilanie • dół: powrót</text></svg>', Gt = { ground: Bt, upper: Wt, basement: Ft }, qt = { horizontal: Kt, column: Zt }, D = {
   ground: { id: "ground", name: "Parter", rooms: [
     { id: "office", name: "Biuro", x: 2, y: 2, width: 30, height: 31 },
     { id: "hall", name: "Hall", x: 2, y: 34, width: 30, height: 25 },
@@ -560,15 +560,15 @@ const lt = Vt(F), Bt = '<svg xmlns="http://www.w3.org/2000/svg" width="760" heig
     { id: "gym", name: "Siłownia", x: 57, y: 2, width: 41, height: 57 },
     { id: "garage", name: "Garaż", x: 2, y: 60, width: 96, height: 38 }
   ] }
-}, Yt = (s) => !s || ["unknown", "unavailable", "none", "null"].includes(s.toLowerCase());
-function Jt(s, t, e = 1) {
+}, Jt = (s) => !s || ["unknown", "unavailable", "none", "null"].includes(s.toLowerCase());
+function Yt(s, t, e = 1) {
   const i = t ? s?.states[t] : void 0;
-  if (!i || Yt(i.state)) return { text: "—", value: void 0, unit: "", entity: t };
+  if (!i || Jt(i.state)) return { text: "—", value: void 0, unit: "", entity: t };
   const r = Number(i.state), o = String(i.attributes.unit_of_measurement ?? "");
   return Number.isFinite(r) ? { text: `${r.toFixed(e)}${o ? ` ${o}` : ""}`, value: r, unit: o, entity: t } : { text: i.state, value: void 0, unit: o, entity: t };
 }
-const Xt = [["basement", "Piwnica"], ["ground", "Parter"], ["upper", "Piętro"]], R = [{ name: "Pion 1" }, { name: "Pion 2" }, { name: "Pion 3" }];
-class Qt extends M {
+const Xt = [["basement", "Piwnica"], ["ground", "Parter"], ["upper", "Piętro"]], N = [{ name: "Pion 1" }, { name: "Pion 2" }, { name: "Pion 3" }];
+class Qt extends C {
   static properties = { hass: { attribute: !1 }, _config: { state: !0 } };
   setConfig(t) {
     this._config = structuredClone(t);
@@ -599,8 +599,8 @@ class Qt extends M {
   updateRiser(t, e, i) {
     const r = this.clone();
     r.entities ??= {};
-    const o = [...r.entities.risers ?? R].map((a) => ({ ...a }));
-    for (; o.length < 3; ) o.push({ ...R[o.length] });
+    const o = [...r.entities.risers ?? N].map((a) => ({ ...a }));
+    for (; o.length < 3; ) o.push({ ...N[o.length] });
     o[t][e] = i || void 0, r.entities.risers = o, this.emit(r);
   }
   updateRoom(t, e, i, r) {
@@ -651,19 +651,19 @@ class Qt extends M {
   }
   roomEditor(t) {
     const e = this._config?.rooms?.[t] ?? [];
-    return p`${t === "ground" ? this.curveEditor() : f}<details><summary>${U[t].name} — pokoje i czujniki</summary><div class="rooms">${U[t].rooms.filter((i) => i.sensor !== !1).map((i) => {
+    return p`${t === "ground" ? this.curveEditor() : f}<details><summary>${D[t].name} — pokoje i czujniki</summary><div class="rooms">${D[t].rooms.filter((i) => i.sensor !== !1).map((i) => {
       const r = e.find((o) => o.id === i.id) ?? { id: i.id };
       return p`<fieldset><legend>${r.name ?? i.name}</legend><label>Nazwa<input .value=${r.name ?? ""} placeholder=${i.name} @input=${(o) => this.updateRoom(t, i.id, "name", o.target.value)}></label><label>Encja temperatury<ha-entity-picker .hass=${this.hass} .value=${r.entity ?? ""} @value-changed=${(o) => this.updateRoom(t, i.id, "entity", o.detail.value)} allow-custom-entity></ha-entity-picker></label><div class="two"><label>Temperatura zadana<input type="number" step="0.1" .value=${r.target?.toString() ?? ""} @input=${(o) => this.updateRoom(t, i.id, "target", o.target.value)}></label><label>Tolerancja °C<input type="number" step="0.1" min="0" .value=${r.tolerance?.toString() ?? ""} @input=${(o) => this.updateRoom(t, i.id, "tolerance", o.target.value)}></label></div></fieldset>`;
     })}</div></details>`;
   }
   render() {
-    const t = this._config ?? {}, i = (t.entities ?? {}).risers ?? R;
+    const t = this._config ?? {}, i = (t.entities ?? {}).risers ?? N;
     return p`<div class="editor"><details open><summary>Układ i prezentacja</summary><div class="section-body"><label>Szablon<select .value=${t.layout ?? "central"} @change=${(r) => this.updateRoot("layout", r.target.value)}><option value="central">Centralny rzut i panel CO</option><option value="floors_over_co">Dwa rzuty nad instalacją</option></select></label>${t.layout !== "floors_over_co" ? this.select("Kondygnacja początkowa", t.floor ?? "ground", (r) => this.updateRoot("floor", r)) : p`<div class="two">${this.select("Lewy rzut", t.floors?.[0] ?? "ground", (r) => this.updateFloor(0, r))}${this.select("Prawy rzut", t.floors?.[1] ?? "upper", (r) => this.updateFloor(1, r))}</div>`}<label>Precyzja odczytów<select .value=${String(t.precision ?? 1)} @change=${(r) => this.updateRoot("precision", r.target.value)}><option value="0">0 miejsc po przecinku</option><option value="1">1 miejsce po przecinku</option><option value="2">2 miejsca po przecinku</option><option value="3">3 miejsca po przecinku</option></select></label></div></details><details open><summary>Główne czujniki</summary><div class="section-body">${this.picker("Temperatura zewnętrzna", "outside")}${this.picker("CWU", "hot_water")}${this.picker("Stan pompy", "pump_status", !0)}${this.picker("Prędkość wentylatorów", "fan_speed", !0)}${this.picker("Stan pompy obiegowej P1", "circulation_status", !0)}</div></details><details open><summary>Pompa i bufor</summary><div class="section-body">${this.picker("Zasilanie pompy", "pump_supply")}${this.picker("Powrót pompy", "pump_return")}${this.picker("Bufor — góra", "buffer_top")}${this.picker("Bufor — środek", "buffer_middle")}${this.picker("Bufor — dół", "buffer_bottom")}${this.picker("Wspólne zasilanie CO", "central_supply", !0)}${this.picker("Wspólny powrót CO", "central_return", !0)}</div></details><details open><summary>Trzy piony ogrzewania</summary><div class="section-body"><div class="risers">${[0, 1, 2].map((r) => {
-      const o = i[r] ?? R[r];
+      const o = i[r] ?? N[r];
       return p`<fieldset><legend>Pion ${r + 1}</legend><label>Nazwa<input .value=${o.name ?? ""} placeholder=${`Pion ${r + 1}`} @input=${(a) => this.updateRiser(r, "name", a.target.value)}></label><label>Zasilanie<ha-entity-picker .hass=${this.hass} .value=${o.supply ?? ""} @value-changed=${(a) => this.updateRiser(r, "supply", a.detail.value)} allow-custom-entity></ha-entity-picker></label><label>Powrót<ha-entity-picker .hass=${this.hass} .value=${o.return ?? ""} @value-changed=${(a) => this.updateRiser(r, "return", a.detail.value)} allow-custom-entity></ha-entity-picker></label></fieldset>`;
     })}</div></div></details>${this.statisticsEditor()}<details><summary>Pomieszczenia</summary><div class="section-body">${this.roomEditor("ground")}${this.roomEditor("upper")}${this.roomEditor("basement")}</div></details>`;
   }
-  static styles = ht`.editor{display:grid;gap:14px;padding:12px;max-width:680px}label{display:grid;gap:5px;font-size:14px}small,p{color:var(--secondary-text-color)}p{font-size:13px;margin:10px 0}select,input{box-sizing:border-box;width:100%;padding:9px;border-radius:6px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);font:inherit}button{padding:9px 12px;border:1px solid var(--divider-color);border-radius:6px;background:var(--card-background-color);color:var(--primary-text-color);cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.section-body{display:grid;gap:14px;margin-top:12px}.curve-guides{display:grid;grid-template-columns:1fr;gap:10px}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.risers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}fieldset{border:1px solid var(--divider-color);border-radius:8px;display:grid;gap:9px;padding:10px;min-width:0}legend{padding:0 4px;font-weight:600}details{border:1px solid var(--divider-color);border-radius:8px;padding:10px}summary{cursor:pointer;font-weight:600}.rooms,.curve-points{display:grid;gap:10px;margin-top:12px}.curve-editor{display:grid;gap:8px}@media(max-width:560px){.two,.risers{grid-template-columns:1fr}}`;
+  static styles = pt`.editor{display:grid;gap:14px;padding:12px;max-width:680px}label{display:grid;gap:5px;font-size:14px}small,p{color:var(--secondary-text-color)}p{font-size:13px;margin:10px 0}select,input{box-sizing:border-box;width:100%;padding:9px;border-radius:6px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);font:inherit}button{padding:9px 12px;border:1px solid var(--divider-color);border-radius:6px;background:var(--card-background-color);color:var(--primary-text-color);cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.section-body{display:grid;gap:14px;margin-top:12px}.curve-guides{display:grid;grid-template-columns:1fr;gap:10px}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.risers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}fieldset{border:1px solid var(--divider-color);border-radius:8px;display:grid;gap:9px;padding:10px;min-width:0}legend{padding:0 4px;font-weight:600}details{border:1px solid var(--divider-color);border-radius:8px;padding:10px}summary{cursor:pointer;font-weight:600}.rooms,.curve-points{display:grid;gap:10px;margin-top:12px}.curve-editor{display:grid;gap:8px}@media(max-width:560px){.two,.risers{grid-template-columns:1fr}}`;
 }
 customElements.define("dom-heat-card-editor", Qt);
 const te = "dom-heat-card", ee = {
@@ -677,8 +677,8 @@ const te = "dom-heat-card", ee = {
 }, re = {
   horizontal: { box: "0 0 1300 660", values: { "pc-supply": [290, 190], "pc-return": [290, 335], "buffer-top": [490, 226], "buffer-middle": [490, 291], "buffer-bottom": [490, 356], cwu: [410, 552], "riser-1-supply": [810, 181], "riser-1-return": [810, 414], "riser-2-supply": [1e3, 181], "riser-2-return": [1e3, 414], "riser-3-supply": [1190, 181], "riser-3-return": [1190, 414] } },
   column: { box: "0 0 500 790", values: { "pc-supply": [135, 164], "pc-return": [365, 164], "buffer-top": [154, 307], "buffer-middle": [154, 375], "buffer-bottom": [154, 440], cwu: [376, 380], "riser-1-supply": [86, 620], "riser-1-return": [86, 662], "riser-2-supply": [251, 620], "riser-2-return": [251, 662], "riser-3-supply": [416, 620], "riser-3-return": [416, 662] } }
-}, dt = { layout: "central", floor: "ground", floors: ["ground", "upper"], precision: 1 };
-class oe extends M {
+}, ct = { layout: "central", floor: "ground", floors: ["ground", "upper"], precision: 1 };
+class oe extends C {
   static properties = { hass: { attribute: !1 }, _config: { state: !0 }, selectedFloor: { state: !0 }, displayMode: { state: !0 }, statsData: { state: !0 }, statsLoading: { state: !0 } };
   constructor() {
     super(), this.selectedFloor = "ground", this.displayMode = "home", this.statsPeriod = "day", this.statsLoading = !1;
@@ -687,7 +687,7 @@ class oe extends M {
     if (!t || t.type !== "custom:dom-heat-card") throw new Error("Wymagany jest typ: custom:dom-heat-card");
     if (t.layout && !["central", "floors_over_co"].includes(t.layout)) throw new Error("layout musi być: central albo floors_over_co");
     if (t.precision !== void 0 && (!Number.isInteger(t.precision) || t.precision < 0 || t.precision > 3)) throw new Error("precision musi być liczbą całkowitą od 0 do 3");
-    this._config = { ...dt, ...t }, this.selectedFloor = t.floor ?? "ground";
+    this._config = { ...ct, ...t }, this.selectedFloor = t.floor ?? "ground";
   }
   static getConfigElement() {
     return document.createElement("dom-heat-card-editor");
@@ -702,13 +702,13 @@ class oe extends M {
     return { columns: "full", min_columns: 6, min_rows: 7, rows: "auto" };
   }
   get config() {
-    return this._config ?? { type: "custom:dom-heat-card", ...dt };
+    return this._config ?? { type: "custom:dom-heat-card", ...ct };
   }
   get e() {
     return this.config.entities ?? {};
   }
   val(t) {
-    return Jt(this.hass, t, this.config.precision ?? 1);
+    return Yt(this.hass, t, this.config.precision ?? 1);
   }
   demo(t, e = "—") {
     const i = this.val(t);
@@ -734,10 +734,10 @@ class oe extends M {
     return t.value.value > t.config.target + e ? "warm" : t.value.value < t.config.target - e ? "cool" : "neutral";
   }
   floorPlan(t) {
-    const e = U[t], i = Gt[t].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
-    return p`<section class="floor asset-floor" aria-label=${e.name}><div class="floor-title">${e.name}</div><div class="asset-canvas">${lt(i)}<svg class="asset-values" viewBox="0 0 760 600" aria-label=${`Temperatury: ${e.name}`}>${Object.entries(ie[t]).map(([r, o]) => {
+    const e = D[t], i = Gt[t].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
+    return p`<section class="floor asset-floor" aria-label=${e.name}><div class="floor-title">${e.name}</div><div class="asset-canvas">${dt(i)}<svg class="asset-values" viewBox="0 0 760 600" aria-label=${`Temperatury: ${e.name}`}>${Object.entries(ie[t]).map(([r, o]) => {
       const a = ee[t][r], l = e.rooms.find((m) => m.id === a), c = (l ? this.roomValue(t, l) : void 0)?.config?.entity;
-      return x`<text class=${c ? "asset-value clickable" : "asset-value"} x=${o[0]} y=${o[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
+      return y`<text class=${c ? "asset-value clickable" : "asset-value"} x=${o[0]} y=${o[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
     })}</svg></div></section>`;
   }
   metric(t, e, i = "") {
@@ -749,7 +749,7 @@ class oe extends M {
     return p`<header class="header"><div><div class="eyebrow">${t ? "WIDOK ŁĄCZONY" : "INSPIRACJA PRZYKŁADEM"}</div><h2>${t ? "Centralny rzut i pasek CO" : "Dwa rzuty nad instalacją"}</h2></div><div class="head-metrics">${this.metric("Na zewnątrz", this.e.outside)}${this.e.pump_status ? p`<button class="status" @click=${() => this.moreInfo(this.e.pump_status)}><span>Pompa</span><strong>${this.hass?.states[this.e.pump_status]?.state ?? "Niedostępny"}</strong></button>` : f}</div></header>`;
   }
   schemeArt() {
-    return x`<svg class="scheme-art" viewBox="0 0 1000 390" preserveAspectRatio="none" aria-hidden="true">
+    return y`<svg class="scheme-art" viewBox="0 0 1000 390" preserveAspectRatio="none" aria-hidden="true">
     <defs><marker id="heat-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--line-supply)"></path></marker><marker id="return-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--line-return)"></path></marker></defs>
     <path class="pipe supply-pipe" d="M125 160 H325 C350 160 350 160 375 160 H865"></path><path class="pipe return-pipe" d="M865 276 H375 C350 276 350 276 325 276 H125"></path>
     <path class="flow supply-flow" d="M175 160 H300 M420 160 H510 M640 160 H800" marker-end="url(#heat-arrow)"></path><path class="flow return-flow" d="M800 276 H650 M510 276 H420 M300 276 H175" marker-end="url(#return-arrow)"></path>
@@ -762,25 +762,25 @@ class oe extends M {
   }
   motionOverlay() {
     const t = this.e, e = this.val(t.fan1_speed ?? t.fan_speed), i = this.val(t.fan2_speed), r = (e.value ?? 0) > 0, o = (i.value ?? 0) > 0, a = this.isRunning(t.circulation_status), l = this.isRunning(t.circulation2_status), n = this.isRunning(t.pump_status) || a;
-    return x`<svg class="motion-overlay" viewBox="0 0 1300 660" aria-label="Pompy obiegowe i przepływ"><text class="diagram-label" x="290" y="150">Zasilanie PC</text><text class="diagram-label" x="290" y="295">Powrót PC</text><text class="diagram-label" x="445" y="465">CWU</text><g class=${`heat-fan ${t.fan1_speed ?? t.fan_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan1_speed ?? t.fan_speed)}><g transform="translate(120 228)"><g class=${r ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="235">${t.fan1_speed ?? t.fan_speed ? e.text : ""}</text></g><g class=${`heat-fan ${t.fan2_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan2_speed)}><g transform="translate(120 312)"><g class=${o ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="319">${t.fan2_speed ? i.text : ""}</text></g><g class=${`p2-pump ${t.circulation2_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation2_status)}><g class=${l ? "rotating" : ""}><circle cx="390" cy="210" r="25"></circle><path d="M390 190V230M370 210H410M376 196L404 224M404 196L376 224"></path></g><text x="390" y="252">P2</text></g><g class=${`p1-pump ${t.circulation_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation_status)}><g class=${a ? "rotating" : ""}><circle cx="650" cy="210" r="25"></circle><path d="M650 190V230M630 210H670M636 196L664 224M664 196L636 224"></path></g><text x="650" y="252">P1</text></g>${l ? x`<g class="flow-dots"><path class="dot-path hot" d="M180 210H420"></path><path class="dot-path cold" d="M420 350H180"></path></g>` : f}${n ? x`<g class="flow-dots"><path class="dot-path hot" d="M560 210H1190M810 210V246M1000 210V246M1190 210V246"></path><path class="dot-path cold" d="M1190 350H560M810 315V350M1000 315V350M1190 315V350"></path></g>` : f}</svg>`;
+    return y`<svg class="motion-overlay" viewBox="0 0 1300 660" aria-label="Pompy obiegowe i przepływ"><text class="diagram-label" x="290" y="150">Zasilanie PC</text><text class="diagram-label" x="290" y="295">Powrót PC</text><text class="diagram-label" x="445" y="465">CWU</text><g class=${`heat-fan ${t.fan1_speed ?? t.fan_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan1_speed ?? t.fan_speed)}><g transform="translate(120 228)"><g class=${r ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="235">${t.fan1_speed ?? t.fan_speed ? e.text : ""}</text></g><g class=${`heat-fan ${t.fan2_speed ? "clickable" : ""}`} @click=${() => this.moreInfo(t.fan2_speed)}><g transform="translate(120 312)"><g class=${o ? "rotating" : ""}><circle r="30" class="rotor-ring"></circle><path d="M0-25V25M-25 0H25M-18-18L18 18M18-18L-18 18" class="rotor-blades"></path></g></g><text class="fan-speed" x="48" y="319">${t.fan2_speed ? i.text : ""}</text></g><g class=${`p2-pump ${t.circulation2_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation2_status)}><g class=${l ? "rotating" : ""}><circle cx="390" cy="210" r="25"></circle><path d="M390 190V230M370 210H410M376 196L404 224M404 196L376 224"></path></g><text x="390" y="252">P2</text></g><g class=${`p1-pump ${t.circulation_status ? "clickable" : ""}`} @click=${() => this.moreInfo(t.circulation_status)}><g class=${a ? "rotating" : ""}><circle cx="650" cy="210" r="25"></circle><path d="M650 190V230M630 210H670M636 196L664 224M664 196L636 224"></path></g><text x="650" y="252">P1</text></g>${l ? y`<g class="flow-dots"><path class="dot-path hot" d="M180 210H420"></path><path class="dot-path cold" d="M420 350H180"></path></g>` : f}${n ? y`<g class="flow-dots"><path class="dot-path hot" d="M560 210H1190M810 210V246M1000 210V246M1190 210V246"></path><path class="dot-path cold" d="M1190 350H560M810 315V350M1000 315V350M1190 315V350"></path></g>` : f}</svg>`;
   }
   hydronic() {
     const t = this.e, e = t.risers ?? [{ name: "Pion 1" }, { name: "Pion 2" }, { name: "Pion 3" }], i = { "pc-supply": t.pump_supply, "pc-return": t.pump_return, "buffer-top": t.buffer_top, "buffer-middle": t.buffer_middle, "buffer-bottom": t.buffer_bottom, cwu: t.hot_water, "riser-1-supply": e[0]?.supply, "riser-1-return": e[0]?.return, "riser-2-supply": e[1]?.supply, "riser-2-return": e[1]?.return, "riser-3-supply": e[2]?.supply, "riser-3-return": e[2]?.return }, r = this.config.layout === "central" && this.displayMode === "home" ? "column" : "horizontal", o = re[r];
     let a = qt[r].replace(/(<text id="value-[^"]+")/g, '$1 opacity="0"');
-    return r === "horizontal" && (a = a.replace(/<text x="290" y="171"[^>]*>[^<]*<\/text>/, "").replace(/<text x="290" y="318"[^>]*>[^<]*<\/text>/, "").replace(/<text x="410\.0" y="455"[^>]*>CWU<\/text>/, "")), p`<section class=${`hydronic asset-heating ${r}`} aria-label="Instalacja centralnego ogrzewania"><div class="asset-canvas">${lt(a)}${r === "horizontal" ? this.motionOverlay() : f}<svg class="asset-values" viewBox=${o.box} aria-label="Bieżące temperatury CO">${Object.entries(o.values).map(([l, n]) => {
+    return r === "horizontal" && (a = a.replace(/<text x="290" y="171"[^>]*>[^<]*<\/text>/, "").replace(/<text x="290" y="318"[^>]*>[^<]*<\/text>/, "").replace(/<text x="410\.0" y="455"[^>]*>CWU<\/text>/, "")), p`<section class=${`hydronic asset-heating ${r}`} aria-label="Instalacja centralnego ogrzewania"><div class="asset-canvas">${dt(a)}${r === "horizontal" ? this.motionOverlay() : f}<svg class="asset-values" viewBox=${o.box} aria-label="Bieżące temperatury CO">${Object.entries(o.values).map(([l, n]) => {
       const c = i[l];
-      return x`<text class=${c ? "asset-value clickable" : "asset-value"} x=${n[0]} y=${n[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
+      return y`<text class=${c ? "asset-value clickable" : "asset-value"} x=${n[0]} y=${n[1]} @click=${() => this.moreInfo(c)}>${this.demo(c, "—")}</text>`;
     })}</svg></div></section>`;
   }
   curvePanel() {
-    const t = [...this.config.heating_curve?.points ?? []].map((d) => ({ ...d, outside: d.outside_entity ? this.val(d.outside_entity).value : d.outside, supply: d.entity ? this.val(d.entity).value : void 0 })).filter((d) => Number.isFinite(d.outside) && Number.isFinite(d.supply)).sort((d, w) => d.outside - w.outside), e = this.val(this.e.outside), i = this.val(this.e.pump_supply), r = 920, o = 420, a = 76, l = 32, n = 38, c = 62, m = Math.min(-20, ...t.map((d) => d.outside), e.value ?? 20), u = Math.max(20, ...t.map((d) => d.outside), e.value ?? -20), g = Math.min(15, ...t.map((d) => d.supply), i.value ?? 55), h = Math.max(55, ...t.map((d) => d.supply), i.value ?? 15), v = (d) => a + (d - m) / (u - m || 1) * (r - a - l), k = (d) => o - c - (d - g) / (h - g || 1) * (o - n - c), xt = t.map((d) => `${v(d.outside)},${k(d.supply)}`).join(" ");
-    return p`<section class="curve-panel"><div class="section-title"><div><b>Krzywa grzewcza</b><span>Punkty odczytane z encji Neoheat</span></div><span>Aktualnie: ${e.text} / ${i.text}</span></div>${t.length >= 2 ? x`<svg class="curve-chart" viewBox="0 0 ${r} ${o}" aria-label="Wykres krzywej grzewczej"><line class="axis" x1=${a} y1=${o - c} x2=${r - l} y2=${o - c}></line><line class="axis" x1=${a} y1=${n} x2=${a} y2=${o - c}></line>${[0, 0.25, 0.5, 0.75, 1].map((d) => {
-      const w = n + d * (o - n - c), V = h - d * (h - g);
-      return x`<g><line class="grid" x1=${a} y1=${w} x2=${r - l} y2=${w}></line><text class="axis-label" x=${a - 12} y=${w + 5}>${V.toFixed(0)}°</text></g>`;
+    const t = [...this.config.heating_curve?.points ?? []].map((d) => ({ ...d, outside: d.outside_entity ? this.val(d.outside_entity).value : d.outside, supply: d.entity ? this.val(d.entity).value : void 0 })).filter((d) => Number.isFinite(d.outside) && Number.isFinite(d.supply)).sort((d, k) => d.outside - k.outside), e = this.val(this.e.outside), i = this.val(this.e.pump_supply), r = 920, o = 420, a = 76, l = 32, n = 38, c = 62, m = Math.min(-20, ...t.map((d) => d.outside), e.value ?? 20), u = Math.max(20, ...t.map((d) => d.outside), e.value ?? -20), v = Math.min(15, ...t.map((d) => d.supply), i.value ?? 55), g = Math.max(55, ...t.map((d) => d.supply), i.value ?? 15), h = (d) => a + (d - m) / (u - m || 1) * (r - a - l), x = (d) => o - c - (d - v) / (g - v || 1) * (o - n - c), P = t.map((d) => `${h(d.outside)},${x(d.supply)}`).join(" ");
+    return p`<section class="curve-panel"><div class="section-title"><div><b>Krzywa grzewcza</b><span>Punkty odczytane z encji Neoheat</span></div><span>Aktualnie: ${e.text} / ${i.text}</span></div>${t.length >= 2 ? y`<svg class="curve-chart" viewBox="0 0 ${r} ${o}" aria-label="Wykres krzywej grzewczej"><line class="axis" x1=${a} y1=${o - c} x2=${r - l} y2=${o - c}></line><line class="axis" x1=${a} y1=${n} x2=${a} y2=${o - c}></line>${[0, 0.25, 0.5, 0.75, 1].map((d) => {
+      const k = n + d * (o - n - c), A = g - d * (g - v);
+      return y`<g><line class="grid" x1=${a} y1=${k} x2=${r - l} y2=${k}></line><text class="axis-label" x=${a - 12} y=${k + 5}>${A.toFixed(0)}°</text></g>`;
     })}${[0, 0.25, 0.5, 0.75, 1].map((d) => {
-      const w = a + d * (r - a - l), V = m + d * (u - m);
-      return x`<text class="axis-label" x=${w} y=${o - 28}>${V.toFixed(0)}°</text>`;
-    })}<polyline class="curve-line" points=${xt}></polyline>${t.map((d) => x`<g><circle class="curve-point" cx=${v(d.outside)} cy=${k(d.supply)} r="7" @click=${() => this.moreInfo(d.entity)}></circle><text class="point-label" x=${v(d.outside)} y=${k(d.supply) - 14}>${d.supply}°</text></g>`)}${e.value !== void 0 && i.value !== void 0 ? x`<g class="current-guides"><line class="current-guide" x1=${v(e.value)} y1=${n} x2=${v(e.value)} y2=${o - c}></line><line class="current-guide" x1=${a} y1=${k(i.value)} x2=${r - l} y2=${k(i.value)}></line><text class="current-guide-label" x=${v(e.value)} y=${n - 10}>${e.text}</text><text class="current-guide-label" x=${r - l - 4} y=${k(i.value) - 8}>${i.text}</text><circle class="current-point" cx=${v(e.value)} cy=${k(i.value)} r="8" @click=${() => this.moreInfo(this.e.pump_supply)}></circle></g>` : f}<text class="axis-title" x=${r / 2} y=${o - 4}>Na zewnątrz</text><text class="axis-title" transform="translate(18 ${o / 2}) rotate(-90)">Zasilanie CO</text></svg>` : p`<div class="curve-empty">Przypisz co najmniej dwie encje Neoheat do punktów krzywej w edytorze karty.</div>`}</section>`;
+      const k = a + d * (r - a - l), A = m + d * (u - m);
+      return y`<text class="axis-label" x=${k} y=${o - 28}>${A.toFixed(0)}°</text>`;
+    })}<polyline class="curve-line" points=${P}></polyline>${t.map((d) => y`<g><circle class="curve-point" cx=${h(d.outside)} cy=${x(d.supply)} r="7" @click=${() => this.moreInfo(d.entity)}></circle><text class="point-label" x=${h(d.outside)} y=${x(d.supply) - 14}>${d.supply}°</text></g>`)}${e.value !== void 0 && i.value !== void 0 ? y`<g class="current-guides"><line class="current-guide" x1=${h(e.value)} y1=${n} x2=${h(e.value)} y2=${o - c}></line><line class="current-guide" x1=${a} y1=${x(i.value)} x2=${r - l} y2=${x(i.value)}></line><text class="current-guide-label" x=${h(e.value)} y=${n - 10}>${e.text}</text><text class="current-guide-label" x=${r - l - 4} y=${x(i.value) - 8}>${i.text}</text><circle class="current-point" cx=${h(e.value)} cy=${x(i.value)} r="8" @click=${() => this.moreInfo(this.e.pump_supply)}></circle></g>` : f}<text class="axis-title" x=${r / 2} y=${o - 4}>Na zewnątrz</text><text class="axis-title" transform="translate(18 ${o / 2}) rotate(-90)">Zasilanie CO</text></svg>` : p`<div class="curve-empty">Przypisz co najmniej dwie encje Neoheat do punktów krzywej w edytorze karty.</div>`}</section>`;
   }
   viewSwitch() {
     return p`<footer><div class="view-switch"><button class=${this.displayMode === "home" ? "active" : ""} @click=${() => this.displayMode = "home"}>Dom + CO</button><button class=${this.displayMode === "heating" ? "active" : ""} @click=${() => this.displayMode = "heating"}>Pełny układ CO</button><button class=${this.displayMode === "curve" ? "active" : ""} @click=${() => this.displayMode = "curve"}>Krzywa grzewcza</button><button class=${this.displayMode === "stats" ? "active" : ""} @click=${() => {
@@ -793,26 +793,34 @@ class oe extends M {
   }
   async loadStatistics() {
     const t = this.config.statistics;
-    if (!this.hass?.callApi || !t?.compressor_frequency || !t.working_mode) return;
+    if (!this.hass?.callApi || !t?.compressor_frequency || !t.working_mode) {
+      this.statsData = void 0;
+      return;
+    }
     this.statsLoading = !0;
     const e = /* @__PURE__ */ new Date(), i = new Date(e);
-    this.statsPeriod === "day" ? i.setDate(e.getDate() - 1) : this.statsPeriod === "week" ? i.setDate(e.getDate() - 7) : this.statsPeriod === "month" ? i.setMonth(e.getMonth() - 1) : i.setFullYear(e.getFullYear() - 1);
+    this.statsPeriod === "day" ? i.setHours(0, 0, 0, 0) : this.statsPeriod === "week" ? (i.setHours(0, 0, 0, 0), i.setDate(i.getDate() - (i.getDay() + 6) % 7)) : this.statsPeriod === "month" ? (i.setDate(1), i.setHours(0, 0, 0, 0)) : (i.setMonth(0, 1), i.setHours(0, 0, 0, 0));
     try {
-      const r = `${t.compressor_frequency},${t.working_mode}`, o = await this.hass.callApi("GET", `history/period/${i.toISOString()}?filter_entity_id=${encodeURIComponent(r)}&minimal_response`), a = o[0] ?? [], l = o[1] ?? [];
+      const r = `${t.compressor_frequency},${t.working_mode}`, o = await this.hass.callApi("GET", `history/period/${i.toISOString()}?filter_entity_id=${encodeURIComponent(r)}&minimal_response`), a = o.find((h) => h[0]?.entity_id === t.compressor_frequency) ?? o[0] ?? [], l = o.find((h) => h[0]?.entity_id === t.working_mode) ?? o[1] ?? [];
       let n = 0;
       for (let h = 1; h < a.length; h += 1) Number(a[h - 1].state) <= 0 && Number(a[h].state) > 20 && (n += 1);
       const c = e.getTime();
       let m = 0, u = 0;
       for (let h = 0; h < l.length; h += 1) {
-        const v = ((h + 1 < l.length ? new Date(l[h + 1].last_changed).getTime() : c) - new Date(l[h].last_changed).getTime()) / 1e3;
-        Number(l[h].state) === 1 && (m += v), Number(l[h].state) === 2 && (u += v);
+        const x = Math.max(i.getTime(), new Date(l[h].last_changed).getTime()), P = Math.min(h + 1 < l.length ? new Date(l[h + 1].last_changed).getTime() : c, c), d = Math.max(0, (P - x) / 1e3);
+        Number(l[h].state) === 1 && (m += d), Number(l[h].state) === 2 && (u += d);
       }
-      let g = 0;
+      let v = 0;
+      const g = {};
       for (let h = 0; h < a.length; h += 1) {
-        const v = ((h + 1 < a.length ? new Date(a[h + 1].last_changed).getTime() : c) - new Date(a[h].last_changed).getTime()) / 1e3;
-        Number(a[h].state) > 20 && (g += v);
+        const x = Number(a[h].state), P = Math.max(i.getTime(), new Date(a[h].last_changed).getTime()), d = Math.min(h + 1 < a.length ? new Date(a[h + 1].last_changed).getTime() : c, c), k = Math.max(0, (d - P) / 1e3);
+        if (x > 20) {
+          v += k;
+          const A = String(x);
+          g[A] = (g[A] ?? 0) + k;
+        }
       }
-      this.statsData = { cwu: m, co: u, compressor: g, starts: n };
+      this.statsData = { cwu: m, co: u, compressor: v, starts: n, speeds: g };
     } catch {
       this.statsData = void 0;
     } finally {
@@ -820,17 +828,17 @@ class oe extends M {
     }
   }
   statisticsPanel() {
-    const t = { day: "Dziennie", week: "Tygodniowo", month: "Miesięcznie", year: "Rocznie" }, e = this.statsData, i = [["Czas grzania CWU", e ? this.durationText(e.cwu) : "—"], ["Czas grzania CO", e ? this.durationText(e.co) : "—"], ["Czas pracy sprężarki", e ? this.durationText(e.compressor) : "—"], ["Liczba załączeń sprężarki", e ? String(e.starts) : "—"]];
+    const t = { day: "Dziennie", week: "Tygodniowo", month: "Miesięcznie", year: "Rocznie" }, e = this.statsData, i = [["Czas grzania CWU", e ? this.durationText(e.cwu) : "—"], ["Czas grzania CO", e ? this.durationText(e.co) : "—"], ["Czas pracy sprężarki", e ? this.durationText(e.compressor) : "—"], ["Liczba załączeń sprężarki", e ? String(e.starts) : "—"], ...Object.entries(e?.speeds ?? {}).sort(([r], [o]) => Number(r) - Number(o)).map(([r, o]) => [`Praca sprężarki przy ${r}`, this.durationText(o)])];
     return p`<section class="stats-panel"><div class="section-title"><div><b>Statystyki pracy</b><span>Okres na podstawie historii Home Assistant</span></div><select .value=${this.statsPeriod} @change=${(r) => {
       this.statsPeriod = r.target.value, this.loadStatistics();
     }}>${Object.entries(t).map(([r, o]) => p`<option value=${r}>${o}</option>`)}</select></div><div class="stats-grid">${i.map(([r, o]) => p`<article><span>${r}</span><b>${o}</b></article>`)}</div><p class="stats-note">${this.statsLoading ? "Pobieranie historii…" : "Start sprężarki: przejście Compressor frequency z 0 na wartość powyżej 20. CWU: tryb 1, CO: tryb 2."}</p></section>`;
   }
   render() {
     if (!this._config) return p``;
-    const t = this.config, e = t.layout === "central" ? p`<nav aria-label="Wybór kondygnacji">${["basement", "ground", "upper"].map((r) => p`<button class=${this.selectedFloor === r ? "active" : ""} @click=${() => this.selectedFloor = r}>${U[r].name}</button>`)}</nav><div class="central-content">${this.floorPlan(this.selectedFloor)}${this.hydronic()}</div>` : p`<div class="two-floors">${this.floorPlan(t.floors?.[0] ?? "ground")}${this.floorPlan(t.floors?.[1] ?? "upper")}</div>${this.hydronic()}`, i = this.displayMode === "home" ? e : this.displayMode === "curve" ? this.curvePanel() : this.displayMode === "stats" ? this.statisticsPanel() : p`<section class="heating-panel"><div class="section-title"><b>Układ CO</b><span>Temperatury w °C</span></div>${this.hydronic()}</section>`;
+    const t = this.config, e = t.layout === "central" ? p`<nav aria-label="Wybór kondygnacji">${["basement", "ground", "upper"].map((r) => p`<button class=${this.selectedFloor === r ? "active" : ""} @click=${() => this.selectedFloor = r}>${D[r].name}</button>`)}</nav><div class="central-content">${this.floorPlan(this.selectedFloor)}${this.hydronic()}</div>` : p`<div class="two-floors">${this.floorPlan(t.floors?.[0] ?? "ground")}${this.floorPlan(t.floors?.[1] ?? "upper")}</div>${this.hydronic()}`, i = this.displayMode === "home" ? e : this.displayMode === "curve" ? this.curvePanel() : this.displayMode === "stats" ? this.statisticsPanel() : p`<section class="heating-panel"><div class="section-title"><b>Układ CO</b><span>Temperatury w °C</span></div>${this.hydronic()}</section>`;
     return p`<ha-card><main class=${`${t.layout === "floors_over_co" ? "floors-layout" : "central-layout"} ${this.displayMode === "heating" ? "heating-view" : ""}`}>${this.topBar()}${i}${this.viewSwitch()}</main></ha-card>`;
   }
-  static styles = ht`
+  static styles = pt`
     :host{display:block;color:var(--primary-text-color);--line-supply:var(--orange-color,#d85b16);--line-return:var(--info-color,#087faa);--panel:var(--secondary-background-color);--wall:var(--divider-color);--room:var(--card-background-color);font-family:var(--paper-font-body1_-_font-family,Roboto,sans-serif)}ha-card{overflow:hidden;background:var(--ha-card-background,var(--card-background-color));color:inherit}.central-layout,.floors-layout{padding:clamp(18px,2.4vw,30px);display:grid;gap:18px}.header{display:flex;justify-content:space-between;gap:20px;align-items:start}.eyebrow{font-size:11px;letter-spacing:1.25px;color:var(--secondary-text-color)}h2{font-size:clamp(22px,2.1vw,30px);margin:6px 0 0;line-height:1.1}.head-metrics{display:flex;gap:8px;align-items:start}.header .metric{background:transparent;border:0;padding:5px;min-width:auto;display:flex;gap:5px;align-items:baseline}.header .metric span{font-size:14px;color:var(--primary-text-color)}.header .metric strong{font-size:22px}.metric,.status{appearance:none;border:1px solid var(--divider-color);background:var(--panel);color:inherit;border-radius:10px;padding:8px 11px;text-align:left;min-width:104px;display:grid;gap:2px;cursor:pointer}.metric:disabled{cursor:default;opacity:.72}.metric span,.status span{font-size:11px;color:var(--secondary-text-color)}.metric strong,.status strong{font-size:clamp(14px,1.5vw,20px);white-space:nowrap}.supply strong{color:var(--line-supply)}.return strong{color:var(--line-return)}nav{display:flex;gap:8px;margin:3px 0 -2px}nav button,footer button{border:1px solid var(--divider-color);border-radius:9px;background:var(--card-background-color);color:inherit;padding:10px 16px;font:inherit;cursor:pointer}nav button.active,footer button.active{background:var(--primary-color);color:var(--text-primary-color,#fff);border-color:var(--primary-color)}.central-content{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:16px;align-items:stretch}.floor{background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:16px;padding:16px;min-width:0}.floor-title{font-size:16px;font-weight:650;margin-bottom:10px}.floor svg{width:100%;display:block;aspect-ratio:1.55}.room rect{fill:var(--panel);stroke:var(--wall);stroke-width:1}.room.warm rect{fill:color-mix(in srgb,var(--line-supply) 17%,var(--room))}.room.cool rect{fill:color-mix(in srgb,var(--line-return) 13%,var(--room))}.room text{fill:var(--primary-text-color);text-anchor:middle;pointer-events:none}.room-name{font-size:4px}.room-temp{font-size:5px;font-weight:bold}.room.clickable{cursor:pointer}.room.clickable:focus rect{stroke:var(--primary-color);stroke-width:2}.hydronic{background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:16px;padding:18px;display:grid;grid-template-columns:1fr 22px 1fr;gap:10px;align-content:start;position:relative}.plant{border:1px solid var(--divider-color);border-radius:12px;padding:10px;display:grid;gap:6px;background:var(--card-background-color)}.pump{grid-column:1}.buffer{grid-column:3;border-radius:38%}.device-icon{font-size:34px;line-height:20px;color:var(--primary-color)}.lines{grid-column:2;grid-row:1;position:relative;min-height:150px}.lines i{position:absolute;height:3px;border-radius:8px;left:0;right:0}.supply-line{top:42%;background:var(--line-supply)}.return-line{top:58%;background:var(--line-return)}.hotwater{grid-column:1 / -1}.risers{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.riser{border-top:3px solid var(--line-supply);padding-top:6px;display:grid;gap:5px;min-width:0}.riser .metric{min-width:0;padding:6px}.common{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}.two-floors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.floors-layout .hydronic{grid-template-columns:1fr 24px 1fr 1fr}.floors-layout .risers{grid-column:4;grid-row:1 / span 2;grid-template-columns:1fr}.floors-layout .hotwater{grid-column:3;grid-row:1}.floors-layout .common{grid-column:1 / 4}.heating-panel{display:grid;gap:16px;background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:18px;padding:20px;min-height:340px}.section-title{display:flex;justify-content:space-between;color:var(--secondary-text-color);font-size:13px}.section-title b{font-size:16px;color:var(--primary-text-color)}.heating-view .hydronic{border:0;padding:16px 0;grid-template-columns:1fr 42px 1fr 1fr;align-items:center}.heating-view .pump{grid-column:1}.heating-view .buffer{grid-column:3}.heating-view .hotwater{grid-column:4;grid-row:1}.heating-view .risers{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(3,minmax(0,1fr));margin-left:28%;}.heating-view .common{grid-row:3}footer{border-top:1px solid var(--divider-color);padding-top:14px;display:grid;justify-items:center;gap:9px}footer small{font-size:11px;color:var(--secondary-text-color)}.view-switch{display:flex;gap:8px}@media(max-width:700px){.header{display:grid;gap:10px}.central-content,.two-floors{grid-template-columns:1fr}.hydronic,.floors-layout .hydronic,.heating-view .hydronic{grid-template-columns:1fr 14px 1fr}.floors-layout .risers,.heating-view .risers{grid-column:1/-1;grid-row:auto;grid-template-columns:repeat(3,minmax(0,1fr));margin-left:0}.floors-layout .hotwater,.floors-layout .common,.heating-view .hotwater{grid-column:1/-1;grid-row:auto}.room-name{font-size:3.6px}.room-temp{font-size:4.5px}}@media(max-width:410px){.risers,.floors-layout .risers,.heating-view .risers{grid-template-columns:1fr}.metric{min-width:0}nav button,footer button{padding:8px 10px}.room-name{font-size:3.3px}.header .metric strong{font-size:18px}}
     .scheme-art{position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);z-index:0;pointer-events:none;opacity:.82}.scheme-art .pipe{fill:none;stroke-width:3}.scheme-art .supply-pipe{stroke:var(--line-supply)}.scheme-art .return-pipe{stroke:var(--line-return)}.scheme-art .flow{fill:none;stroke-width:1.5;opacity:.8}.scheme-art .supply-flow{stroke:var(--line-supply)}.scheme-art .return-flow{stroke:var(--line-return)}.scheme-art .branch{fill:none;stroke-width:2}.scheme-art .fan,.scheme-art .buffer-art,.scheme-art .boiler-art,.scheme-art .riser-art{fill:var(--card-background-color);stroke:var(--divider-color);stroke-width:1.3}.scheme-art .fan path,.scheme-art .buffer-art path,.scheme-art .boiler-art path,.scheme-art .riser-art path{fill:none;stroke:var(--divider-color)}.scheme-art .riser-art circle{fill:var(--line-supply);stroke:none}.hydronic>*:not(.scheme-art){z-index:1}.central-content .scheme-art,.floors-layout:not(.heating-view) .scheme-art{opacity:.32}.heating-view .plant,.heating-view .risers{background:color-mix(in srgb,var(--card-background-color) 94%,transparent)}
     .asset-canvas{position:relative;width:100%;height:100%}.asset-canvas>svg:first-child{display:block;width:100%;height:100%}.asset-values{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.asset-value{font-family:var(--paper-font-body1_-_font-family,Roboto,sans-serif);font-size:34px;fill:var(--primary-text-color);text-anchor:middle;pointer-events:none}.asset-value.clickable{pointer-events:auto;cursor:pointer}.asset-value.clickable:hover{fill:var(--primary-color)}.asset-floor .asset-canvas{aspect-ratio:760 / 600}.asset-floor .asset-canvas>svg:first-child{position:absolute;inset:0}.asset-heating{display:block!important;padding:0!important;overflow:hidden;min-height:0;background:var(--card-background-color)}.asset-heating.column{aspect-ratio:500 / 790}.asset-heating.horizontal{aspect-ratio:1300 / 660}.asset-heating .asset-canvas{position:absolute;inset:0}.asset-heating .asset-canvas>svg:first-child{position:absolute;inset:0}.heating-view .asset-heating{border:0;background:transparent;aspect-ratio:1300 / 660}.heating-view .asset-value{font-size:30px}.central-content .asset-heating{align-self:start}.floors-layout:not(.heating-view) .asset-heating{margin-top:0}.central-content .asset-heating .asset-value{font-size:25px}@media(max-width:700px){.asset-heating.column{aspect-ratio:500 / 690}.asset-value{font-size:28px}.central-content .asset-heating .asset-value{font-size:26px}}
