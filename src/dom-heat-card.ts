@@ -18,7 +18,7 @@ const ASSET_ANCHORS: Record<FloorId, Record<string, [number, number]>> = {
   basement: { lazienka: [105, 155], "pom-gosp-1": [240, 120], silownia: [600, 255], magazyn: [70, 355], "pom-gosp-2": [205, 355], korytarz: [375, 320], garaz: [380, 535] }
 };
 const HEATING_ANCHORS = {
-  horizontal: { box: "0 0 1300 660", values: { "pc-supply": [290, 203], "pc-return": [290, 350], "buffer-top": [490, 226], "buffer-middle": [490, 291], "buffer-bottom": [490, 356], cwu: [410, 540], "riser-1-supply": [810, 181], "riser-1-return": [810, 414], "riser-2-supply": [1000, 181], "riser-2-return": [1000, 414], "riser-3-supply": [1190, 181], "riser-3-return": [1190, 414] } },
+  horizontal: { box: "0 0 1300 660", values: { "pc-supply": [290, 203], "pc-return": [290, 350], "buffer-top": [490, 226], "buffer-middle": [490, 291], "buffer-bottom": [490, 356], cwu: [390, 555], "riser-1-supply": [810, 181], "riser-1-return": [810, 414], "riser-2-supply": [1000, 181], "riser-2-return": [1000, 414], "riser-3-supply": [1190, 181], "riser-3-return": [1190, 414] } },
   column: { box: "0 0 500 790", values: { "pc-supply": [135, 164], "pc-return": [365, 164], "buffer-top": [154, 307], "buffer-middle": [154, 375], "buffer-bottom": [154, 440], cwu: [376, 380], "riser-1-supply": [86, 620], "riser-1-return": [86, 662], "riser-2-supply": [251, 620], "riser-2-return": [251, 662], "riser-3-supply": [416, 620], "riser-3-return": [416, 662] } }
 } as const;
 const defaultConfig: Required<Pick<DomHeatConfig, "layout" | "floor" | "floors" | "precision">> = { layout: "central", floor: "ground", floors: ["ground", "upper"], precision: 1 };
