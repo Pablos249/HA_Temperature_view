@@ -35,7 +35,7 @@ const yt = (s) => new ht(typeof s == "string" ? s : s + "", void 0, G), pt = (s,
   for (const i of t.cssRules) e += i.cssText;
   return yt(e);
 })(s) : s;
-const { is: wt, defineProperty: $t, getOwnPropertyDescriptor: bt, getOwnPropertyNames: _t, getOwnPropertySymbols: zt, getPrototypeOf: At } = Object, L = globalThis, tt = L.trustedTypes, Mt = tt ? tt.emptyScript : "", St = L.reactiveElementPolyfillSupport, j = (s, t) => s, W = { toAttribute(s, t) {
+const { is: wt, defineProperty: bt, getOwnPropertyDescriptor: $t, getOwnPropertyNames: _t, getOwnPropertySymbols: zt, getPrototypeOf: At } = Object, L = globalThis, tt = L.trustedTypes, Mt = tt ? tt.emptyScript : "", St = L.reactiveElementPolyfillSupport, j = (s, t) => s, W = { toAttribute(s, t) {
   switch (t) {
     case Boolean:
       s = s ? Mt : null;
@@ -75,11 +75,11 @@ let M = class extends HTMLElement {
   static createProperty(t, e = et) {
     if (e.state && (e.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(t) && ((e = Object.create(e)).wrapped = !0), this.elementProperties.set(t, e), !e.noAccessor) {
       const i = /* @__PURE__ */ Symbol(), r = this.getPropertyDescriptor(t, i, e);
-      r !== void 0 && $t(this.prototype, t, r);
+      r !== void 0 && bt(this.prototype, t, r);
     }
   }
   static getPropertyDescriptor(t, e, i) {
-    const { get: r, set: o } = bt(this.prototype, t) ?? { get() {
+    const { get: r, set: o } = $t(this.prototype, t) ?? { get() {
       return this[e];
     }, set(a) {
       this[e] = a;
@@ -248,8 +248,8 @@ let M = class extends HTMLElement {
 };
 M.elementStyles = [], M.shadowRootOptions = { mode: "open" }, M[j("elementProperties")] = /* @__PURE__ */ new Map(), M[j("finalized")] = /* @__PURE__ */ new Map(), St?.({ ReactiveElement: M }), (L.reactiveElementVersions ??= []).push("2.1.2");
 const q = globalThis, it = (s) => s, D = q.trustedTypes, rt = D ? D.createPolicy("lit-html", { createHTML: (s) => s }) : void 0, ft = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, mt = "?" + w, Ct = `<${mt}>`, _ = document, H = () => _.createComment(""), O = (s) => s === null || typeof s != "object" && typeof s != "function", J = Array.isArray, Pt = (s) => J(s) || typeof s?.[Symbol.iterator] == "function", B = `[ 	
-\f\r]`, E = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ot = /-->/g, at = />/g, $ = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), st = /'/g, nt = /"/g, vt = /^(?:script|style|textarea|title)$/i, gt = (s) => (t, ...e) => ({ _$litType$: s, strings: t, values: e }), p = gt(1), k = gt(2), z = /* @__PURE__ */ Symbol.for("lit-noChange"), f = /* @__PURE__ */ Symbol.for("lit-nothing"), lt = /* @__PURE__ */ new WeakMap(), b = _.createTreeWalker(_, 129);
+\f\r]`, E = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ot = /-->/g, at = />/g, b = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), st = /'/g, nt = /"/g, vt = /^(?:script|style|textarea|title)$/i, gt = (s) => (t, ...e) => ({ _$litType$: s, strings: t, values: e }), p = gt(1), k = gt(2), z = /* @__PURE__ */ Symbol.for("lit-noChange"), f = /* @__PURE__ */ Symbol.for("lit-nothing"), lt = /* @__PURE__ */ new WeakMap(), $ = _.createTreeWalker(_, 129);
 function xt(s, t) {
   if (!J(s) || !s.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return rt !== void 0 ? rt.createHTML(t) : t;
@@ -260,8 +260,8 @@ const Et = (s, t) => {
   for (let l = 0; l < e; l++) {
     const n = s[l];
     let c, m, u = -1, v = 0;
-    for (; v < n.length && (a.lastIndex = v, m = a.exec(n), m !== null); ) v = a.lastIndex, a === E ? m[1] === "!--" ? a = ot : m[1] !== void 0 ? a = at : m[2] !== void 0 ? (vt.test(m[2]) && (r = RegExp("</" + m[2], "g")), a = $) : m[3] !== void 0 && (a = $) : a === $ ? m[0] === ">" ? (a = r ?? E, u = -1) : m[1] === void 0 ? u = -2 : (u = a.lastIndex - m[2].length, c = m[1], a = m[3] === void 0 ? $ : m[3] === '"' ? nt : st) : a === nt || a === st ? a = $ : a === ot || a === at ? a = E : (a = $, r = void 0);
-    const g = a === $ && s[l + 1].startsWith("/>") ? " " : "";
+    for (; v < n.length && (a.lastIndex = v, m = a.exec(n), m !== null); ) v = a.lastIndex, a === E ? m[1] === "!--" ? a = ot : m[1] !== void 0 ? a = at : m[2] !== void 0 ? (vt.test(m[2]) && (r = RegExp("</" + m[2], "g")), a = b) : m[3] !== void 0 && (a = b) : a === b ? m[0] === ">" ? (a = r ?? E, u = -1) : m[1] === void 0 ? u = -2 : (u = a.lastIndex - m[2].length, c = m[1], a = m[3] === void 0 ? b : m[3] === '"' ? nt : st) : a === nt || a === st ? a = b : a === ot || a === at ? a = E : (a = b, r = void 0);
+    const g = a === b && s[l + 1].startsWith("/>") ? " " : "";
     o += a === E ? n + Ct : u >= 0 ? (i.push(c), n.slice(0, u) + ft + n.slice(u) + w + g) : n + w + (u === -2 ? l : g);
   }
   return [xt(s, o + (s[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
@@ -272,11 +272,11 @@ class R {
     this.parts = [];
     let o = 0, a = 0;
     const l = t.length - 1, n = this.parts, [c, m] = Et(t, e);
-    if (this.el = R.createElement(c, i), b.currentNode = this.el.content, e === 2 || e === 3) {
+    if (this.el = R.createElement(c, i), $.currentNode = this.el.content, e === 2 || e === 3) {
       const u = this.el.content.firstChild;
       u.replaceWith(...u.childNodes);
     }
-    for (; (r = b.nextNode()) !== null && n.length < l; ) {
+    for (; (r = $.nextNode()) !== null && n.length < l; ) {
       if (r.nodeType === 1) {
         if (r.hasAttributes()) for (const u of r.getAttributeNames()) if (u.endsWith(ft)) {
           const v = m[a++], g = r.getAttribute(u).split(w), h = /([.?@])?(.*)/.exec(v);
@@ -286,7 +286,7 @@ class R {
           const u = r.textContent.split(w), v = u.length - 1;
           if (v > 0) {
             r.textContent = D ? D.emptyScript : "";
-            for (let g = 0; g < v; g++) r.append(u[g], H()), b.nextNode(), n.push({ type: 2, index: ++o });
+            for (let g = 0; g < v; g++) r.append(u[g], H()), $.nextNode(), n.push({ type: 2, index: ++o });
             r.append(u[v], H());
           }
         }
@@ -321,16 +321,16 @@ class jt {
   }
   u(t) {
     const { el: { content: e }, parts: i } = this._$AD, r = (t?.creationScope ?? _).importNode(e, !0);
-    b.currentNode = r;
-    let o = b.nextNode(), a = 0, l = 0, n = i[0];
+    $.currentNode = r;
+    let o = $.nextNode(), a = 0, l = 0, n = i[0];
     for (; n !== void 0; ) {
       if (a === n.index) {
         let c;
         n.type === 2 ? c = new T(o, o.nextSibling, this, t) : n.type === 1 ? c = new n.ctor(o, n.name, n.strings, this, t) : n.type === 6 && (c = new Tt(o, this, t)), this._$AV.push(c), n = i[++l];
       }
-      a !== n?.index && (o = b.nextNode(), a++);
+      a !== n?.index && (o = $.nextNode(), a++);
     }
-    return b.currentNode = _, r;
+    return $.currentNode = _, r;
   }
   p(t) {
     let e = 0;
@@ -828,10 +828,10 @@ class oe extends S {
     }
   }
   statisticsPanel() {
-    const t = { day: "Dziennie", week: "Tygodniowo", month: "Miesięcznie", year: "Rocznie" }, e = this.statsData, i = [["Czas grzania CWU", e ? this.durationText(e.cwu) : "—"], ["Czas grzania CO", e ? this.durationText(e.co) : "—"], ["Czas pracy sprężarki", e ? this.durationText(e.compressor) : "—"], ["Liczba załączeń sprężarki", e ? String(e.starts) : "—"], ...Object.entries(e?.speeds ?? {}).sort(([r], [o]) => Number(r) - Number(o)).map(([r, o]) => [`Praca sprężarki przy ${r}`, this.durationText(o)])];
-    return p`<section class="stats-panel"><div class="section-title"><div><b>Statystyki pracy</b><span>Okres na podstawie historii Home Assistant</span></div><select .value=${this.statsPeriod} @change=${(r) => {
-      this.statsPeriod = r.target.value, this.loadStatistics();
-    }}>${Object.entries(t).map(([r, o]) => p`<option value=${r}>${o}</option>`)}</select></div><div class="stats-grid">${i.map(([r, o]) => p`<article><span>${r}</span><b>${o}</b></article>`)}</div><p class="stats-note">${this.statsLoading ? "Pobieranie historii…" : "Start sprężarki: przejście Compressor frequency z 0 na wartość powyżej 20. Operating mode: DHW (5), Central heating (10), Stop (0)."}</p></section>`;
+    const t = { day: "Dziennie", week: "Tygodniowo", month: "Miesięcznie", year: "Rocznie" }, e = this.statsData, i = [["Czas grzania CWU", e ? this.durationText(e.cwu) : "—"], ["Czas grzania CO", e ? this.durationText(e.co) : "—"], ["Czas pracy sprężarki", e ? this.durationText(e.compressor) : "—"], ["Liczba załączeń sprężarki", e ? String(e.starts) : "—"]], r = Object.entries(e?.speeds ?? {}).sort(([o], [a]) => Number(o) - Number(a));
+    return p`<section class="stats-panel"><div class="section-title"><div><b>Statystyki pracy</b><span>Okres na podstawie historii Home Assistant</span></div><select .value=${this.statsPeriod} @change=${(o) => {
+      this.statsPeriod = o.target.value, this.loadStatistics();
+    }}>${Object.entries(t).map(([o, a]) => p`<option value=${o}>${a}</option>`)}</select></div><div class="stats-grid">${i.map(([o, a]) => p`<article><span>${o}</span><b>${a}</b></article>`)}</div><section class="speed-stats"><h3>Czas pracy według częstotliwości sprężarki</h3>${r.length ? p`<div class="speed-grid">${r.map(([o, a]) => p`<div class="speed-row"><span>${o} Hz</span><b>${this.durationText(a)}</b></div>`)}</div>` : p`<p class="stats-muted">${this.statsLoading ? "Pobieranie historii…" : "Brak zarejestrowanych wartości częstotliwości w tym okresie."}</p>`}</section><p class="stats-note">Start sprężarki: zmiana częstotliwości z 0 na wartość powyżej 20 Hz. Operating mode: DHW (5), Central heating (10), Stop (0).</p></section>`;
   }
   render() {
     if (!this._config) return p``;
@@ -849,7 +849,7 @@ class oe extends S {
     .motion-overlay .p2-pump circle{fill:var(--dh-panel);stroke:var(--dh-ink);stroke-width:2.5}.motion-overlay .p2-pump path{fill:none;stroke:var(--dh-ink);stroke-width:2.5;stroke-linecap:round}.motion-overlay .p2-pump text{fill:var(--dh-ink);font:600 18px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.motion-overlay .p2-pump.clickable{pointer-events:auto;cursor:pointer}.motion-overlay .p2-pump.clickable:hover circle{stroke:var(--primary-color);stroke-width:4}
     .motion-overlay .heat-fan.clickable{pointer-events:auto;cursor:pointer}.motion-overlay .heat-fan.clickable:hover .rotor-ring{stroke:var(--primary-color);stroke-width:4}.motion-overlay .fan-speed{text-anchor:end}
     .motion-overlay .diagram-label{fill:var(--dh-muted);font:400 18px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.asset-heating.horizontal .asset-canvas{left:110px;right:0;width:auto}
-    .curve-panel{background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:18px;padding:20px}.curve-panel .section-title{align-items:start}.curve-panel .section-title>div{display:grid;gap:4px}.curve-chart{display:block;width:100%;margin-top:12px}.curve-chart .axis{stroke:var(--primary-text-color);stroke-width:2}.curve-chart .grid{stroke:var(--divider-color);stroke-width:1}.curve-chart .axis-label,.curve-chart .axis-title{fill:var(--secondary-text-color);font:14px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.curve-chart .curve-line{fill:none;stroke:var(--primary-color);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}.curve-chart .curve-point{fill:var(--card-background-color);stroke:var(--primary-color);stroke-width:4}.curve-chart .point-label{fill:var(--primary-text-color);font:14px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.curve-chart .current-guide{stroke:var(--primary-color);stroke-width:2;stroke-dasharray:8 7;opacity:.8}.curve-chart .current-guide-label{fill:var(--primary-color);font:600 13px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.curve-chart .current-point{fill:var(--line-supply);stroke:var(--card-background-color);stroke-width:4;cursor:pointer}.curve-empty{min-height:260px;display:grid;place-items:center;color:var(--secondary-text-color);text-align:center}
+    .stats-panel{display:grid;gap:18px;background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:18px;padding:20px}.stats-panel .section-title{align-items:center;gap:16px}.stats-panel .section-title>div{display:grid;gap:5px}.stats-panel select{padding:9px 12px;border:1px solid var(--divider-color);border-radius:8px;background:var(--card-background-color);color:var(--primary-text-color);font:inherit}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.stats-grid article{display:grid;gap:8px;padding:16px;border:1px solid var(--divider-color);border-radius:12px;background:var(--secondary-background-color)}.stats-grid article span,.speed-row span{color:var(--secondary-text-color);font-size:13px}.stats-grid article b{font-size:22px;white-space:nowrap}.speed-stats{display:grid;gap:10px}.speed-stats h3{margin:0;font-size:15px}.speed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}.speed-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--divider-color);border-radius:9px}.speed-row b{white-space:nowrap}.stats-muted,.stats-note{color:var(--secondary-text-color);font-size:12px;margin:0}.curve-panel{background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:18px;padding:20px}.curve-panel .section-title{align-items:start}.curve-panel .section-title>div{display:grid;gap:4px}.curve-chart{display:block;width:100%;margin-top:12px}.curve-chart .axis{stroke:var(--primary-text-color);stroke-width:2}.curve-chart .grid{stroke:var(--divider-color);stroke-width:1}.curve-chart .axis-label,.curve-chart .axis-title{fill:var(--secondary-text-color);font:14px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.curve-chart .curve-line{fill:none;stroke:var(--primary-color);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}.curve-chart .curve-point{fill:var(--card-background-color);stroke:var(--primary-color);stroke-width:4}.curve-chart .point-label{fill:var(--primary-text-color);font:14px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.curve-chart .current-guide{stroke:var(--primary-color);stroke-width:2;stroke-dasharray:8 7;opacity:.8}.curve-chart .current-guide-label{fill:var(--primary-color);font:600 13px var(--paper-font-body1_-_font-family,Roboto,sans-serif);text-anchor:middle}.curve-chart .current-point{fill:var(--line-supply);stroke:var(--card-background-color);stroke-width:4;cursor:pointer}.curve-empty{min-height:260px;display:grid;place-items:center;color:var(--secondary-text-color);text-align:center}
   `;
 }
 customElements.define(te, oe);
