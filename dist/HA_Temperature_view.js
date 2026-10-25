@@ -626,7 +626,7 @@ class Qt extends A {
   }
   roomEditor(t) {
     const e = this._config?.rooms?.[t] ?? [];
-    return p`<details><summary>${T[t].name} — pokoje i czujniki</summary><div class="rooms">${T[t].rooms.filter((i) => i.sensor !== !1).map((i) => {
+    return p`${t === "ground" ? this.curveEditor() : u}<details><summary>${T[t].name} — pokoje i czujniki</summary><div class="rooms">${T[t].rooms.filter((i) => i.sensor !== !1).map((i) => {
       const r = e.find((o) => o.id === i.id) ?? { id: i.id };
       return p`<fieldset><legend>${r.name ?? i.name}</legend><label>Nazwa<input .value=${r.name ?? ""} placeholder=${i.name} @input=${(o) => this.updateRoom(t, i.id, "name", o.target.value)}></label><label>Encja temperatury<ha-entity-picker .hass=${this.hass} .value=${r.entity ?? ""} @value-changed=${(o) => this.updateRoom(t, i.id, "entity", o.detail.value)} allow-custom-entity></ha-entity-picker></label><div class="two"><label>Temperatura zadana<input type="number" step="0.1" .value=${r.target?.toString() ?? ""} @input=${(o) => this.updateRoom(t, i.id, "target", o.target.value)}></label><label>Tolerancja °C<input type="number" step="0.1" min="0" .value=${r.tolerance?.toString() ?? ""} @input=${(o) => this.updateRoom(t, i.id, "tolerance", o.target.value)}></label></div></fieldset>`;
     })}</div></details>`;
