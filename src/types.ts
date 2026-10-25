@@ -9,9 +9,10 @@ export interface HeatEntities {
 }
 export interface HeatingCurvePoint { outside?: number; outside_entity?: string; entity?: string; supply?: number; }
 export interface HeatingCurve { points?: HeatingCurvePoint[]; current_outside_entity?: string; current_supply_entity?: string; }
+export interface StatisticsConfig { compressor_frequency?: string; working_mode?: string; }
 export interface DomHeatConfig {
   type: "custom:dom-heat-card"; layout?: Layout; floor?: FloorId; floors?: [FloorId, FloorId];
-  precision?: number; demo?: boolean; entities?: HeatEntities; rooms?: Partial<Record<FloorId, Room[]>>; heating_curve?: HeatingCurve;
+  precision?: number; demo?: boolean; entities?: HeatEntities; rooms?: Partial<Record<FloorId, Room[]>>; heating_curve?: HeatingCurve; statistics?: StatisticsConfig;
 }
 export interface HassEntity { entity_id: string; state: string; attributes: Record<string, unknown>; }
-export interface Hass { states: Record<string, HassEntity>; formatEntityState?: (entity: HassEntity) => string; }
+export interface Hass { states: Record<string, HassEntity>; formatEntityState?: (entity: HassEntity) => string; callApi?<T>(method: string, path: string): Promise<T>; }
